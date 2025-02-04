@@ -1,10 +1,8 @@
 import mongoose from 'mongoose'
 
-const URI = process.env.ATLAS_URI || ""
-
 async function connectDB() {
     try {
-        await mongoose.connect(URI)
+        await mongoose.connect(process.env.ATLAS_URI)
         console.log("Successfully, connected to MongoDB!")
     } catch (err) {
         console.log(err)

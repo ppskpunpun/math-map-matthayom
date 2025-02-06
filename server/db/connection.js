@@ -1,5 +1,6 @@
 import mongoose from 'mongoose'
 
+// connect to MongoDB using URI
 async function connectDB() {
     try {
         await mongoose.connect(process.env.ATLAS_URI)

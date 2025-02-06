@@ -18,6 +18,7 @@ const userSchema = new Schema({
     }
 })
 
+// hashed password before putting it into MongoDB
 userSchema.pre('save', async function() {
     this.password = await bcrypt.hash(this.password, 10)
 })

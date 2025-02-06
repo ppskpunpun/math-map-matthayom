@@ -1,16 +1,16 @@
+// load .env file
+import dotenv from 'dotenv'
+dotenv.config()
+
 import express from "express"
 import cors from "cors"
 import cookieParser from 'cookie-parser'
 import connectDB from "./db/connection.js"
-import dotenv from 'dotenv'
 
 // routes
 import authRoute from './routes/auth.js'
 
-// load .env file
-dotenv.config()
-
-// Connect to MongoDB
+// connect to MongoDB
 connectDB()
 
 const PORT = process.env.PORT || 5050

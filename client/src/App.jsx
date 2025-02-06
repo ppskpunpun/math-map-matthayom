@@ -1,16 +1,15 @@
-import { Excalidraw } from "@excalidraw/excalidraw"
-import diagramJson from "./assets/excalidraw/math-map-v1.json"
+import { BrowserRouter, Routes, Route } from 'react-router';
+import AuthProvider from './provider/authProvider';
+import MathMap from './components/MathMap'
 
 export default function App() {
   return (
-    <div>
-      <div className="h-screen">
-        <Excalidraw 
-          initialData={diagramJson}
-          viewModeEnabled={true}
-          gridModeEnabled={false}
-        />
-      </div>
-    </div>
+    <AuthProvider>    
+      <BrowserRouter>
+        <Routes>
+          <Route path='/' element={ <MathMap className='h-screen' /> } />
+        </Routes>
+      </BrowserRouter>
+    </AuthProvider>
   )
 }

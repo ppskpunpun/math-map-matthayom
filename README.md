@@ -1,4 +1,4 @@
-# Math Map for Matthayom
+# Math Map Matthayom
 
 # Getting Started
 You'll have to create MongoDB account first to run this locally.

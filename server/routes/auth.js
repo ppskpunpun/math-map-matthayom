@@ -17,8 +17,8 @@ async function getToken(req, res) {
 router.post('/verify', async (req, res) => {
     const token = await getToken(req, res);
     try {
-        const user = verifyToken(token);
-        res.status(200).json({ message: user.username });
+        const user = await verifyToken(token);
+        res.status(200).json({ message: user.username, valid: true });
     } catch(err) {
         res.status(401).json({ message: 'Invalid token'});
     }
@@ -26,7 +26,9 @@ router.post('/verify', async (req, res) => {
 
 router.post('/signup', async (req, res) => {
     try {
+        // check if client send the appropriate inputs
         const { username, password, createdAt } = req.body 
+        if (!username || !password) return res.status(400).json({ message: 'All fields are required'})
 
         // check if username is already exists
         const existingUser = await User.findOne({ username })

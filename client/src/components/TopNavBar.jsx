@@ -1,8 +1,15 @@
 import { NavLink, useNavigate } from "react-router"
 import Button from "./Button"
 import HamburgerMenu from "./HamburgerMenu"
+import MMM from '../assets/MMM1.svg'
 
 function Logo() {
+  return (
+    <div className="h-0">
+      <img className="w-16 -translate-y-8" src={MMM} />
+    </div>
+  )
+
   return (
     <div className="font-bold text-4xl flex gap-2">
       <span className="text-primary-500">M</span>

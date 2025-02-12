@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { NavLink } from 'react-router';
 import { FaHouse, FaCalculator, FaMapLocationDot, FaCircleQuestion, FaTrophy  } from 'react-icons/fa6';
 import Button from './Button';
+import MMM from '../assets/MMM2.svg';
 
 function HamburgerBtn({ className, isOpen, onClick }) {
   return (
@@ -19,7 +20,7 @@ function HamburgerBtn({ className, isOpen, onClick }) {
 function SideBarLink({ children, to }) {
   return (
     <li>
-      <NavLink className={({ isActive }) => `flex px-8 py-4 gap-5 text-slate-700 rounded-2xl ${isActive ? 'bg-primary-500 text-white' : ''}`} to={to} end>{ children }</NavLink>
+      <NavLink className={({ isActive }) => `flex px-8 py-4 gap-5 text-slate-700 rounded-2xl ${isActive ? 'bg-primary-500 text-white shadow-sm' : ''}`} to={to} end>{ children }</NavLink>
     </li>  
   )
 }
@@ -39,15 +40,18 @@ function Sidebar({ isOpen }) {
   }, [isOpen]);
 
   return (
-    <div className={`${isHidden ? 'hidden' : 'block'} fixed top-0 left-0 w-screen h-screen bg-backdrop transition-all duration-200 ${isOpen ? 'opacity-100' : 'opacity-0' }`}>
-      <aside className={`fixed top-0 left-0 w-[300px] h-screen bg-primary-400 transition-all duration-400 ${isOpen ? 'translate-x-0' : '-translate-x-[100%]'}`}>
-        <ul className='flex flex-col pt-[70px] px-4 gap-2'>
+    <div className={`${isHidden ? 'hidden' : 'block'} flex flex-col fixed top-0 left-0 w-screen h-screen bg-backdrop transition-all duration-200 z-40 ${isOpen ? 'opacity-100' : 'opacity-0' }`}>
+      <aside className={`flex flex-col items-center fixed top-0 left-0 w-[300px] h-screen bg-primary-400 transition-all duration-400 ${isOpen ? 'translate-x-0' : '-translate-x-[100%]'}`}>
+        <ul className='pt-[70px] px-4 gap-2 w-full'>
           <SideBarLink to='/'><FaHouse size='20'/>Home</SideBarLink>
           <SideBarLink to='/contents'><FaCalculator size='20'/>Contents</SideBarLink>
           <SideBarLink to='/roadmap'><FaMapLocationDot size='20'/>Roadmap</SideBarLink>
           <SideBarLink to='/leaderboard'><FaTrophy size='20'/>Leaderboard</SideBarLink>
           <SideBarLink to='/about'><FaCircleQuestion size='20' />About</SideBarLink>
         </ul> 
+        <div className='flex items-end grow'>
+          <img className="w-55 mb-20 bg-white rounded-full pt-4 px-2" src={MMM} />
+        </div>
       </aside>
     </div>
   )

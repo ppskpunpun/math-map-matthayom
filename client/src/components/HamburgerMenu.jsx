@@ -1,5 +1,6 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { NavLink } from 'react-router';
+import { motion, AnimatePresence } from 'motion/react';
 import { FaHouse, FaCalculator, FaMapLocationDot, FaCircleQuestion, FaTrophy  } from 'react-icons/fa6';
 import Button from './Button';
 import MMM from '../assets/MMM2.svg';
@@ -26,35 +27,41 @@ function SideBarLink({ children, to }) {
 }
 
 function Sidebar({ isOpen }) {
-  const [ isHidden, setIsHidden ] = useState(true);
-
-  // handle close animation
-  // isOpen state controls opacity (for animation)
-  // isHidden state controls visibility (wait for closing animation then close)
-  useEffect(() => {
-    if (isOpen == false) {
-      setTimeout(() => setIsHidden(true), 400);
-    } else {
-      setIsHidden(false);
-    }
-  }, [isOpen]);
-
   return (
-    <div className={`${isHidden && 'hidden'} flex flex-col fixed top-0 left-0 w-screen h-screen bg-backdrop transition-all duration-400 z-40 ${isOpen ? 'opacity-100' : 'opacity-0' }`}>
-      <aside className={`flex flex-col items-center fixed top-0 left-0 w-[300px] h-screen bg-gray-50 transition-all duration-400 ${isOpen ? 'translate-x-0' : '-translate-x-[100%]'}`}>
-        <ul className='pt-[70px] px-4 gap-2 w-full'>
-          <SideBarLink to='/'><FaHouse size='20'/>Home</SideBarLink>
-          <SideBarLink to='/contents'><FaCalculator size='20'/>Contents</SideBarLink>
-          <SideBarLink to='/roadmap'><FaMapLocationDot size='20'/>Roadmap</SideBarLink>
-          <SideBarLink to='/leaderboard'><FaTrophy size='20'/>Leaderboard</SideBarLink>
-          <SideBarLink to='/about'><FaCircleQuestion size='20' />About</SideBarLink>
-        </ul> 
-        <div className='flex items-end grow'>
-          <img className="w-55 mb-20 bg-white rounded-full pt-4 px-2" src={MMM} />
-        </div>
-      </aside>
-    </div>
-  )
+    <AnimatePresence>
+      {isOpen && (
+        <motion.div
+          initial="closed"
+          animate="open"
+          exit="closed"
+          variants={{ open: { opacity: 1 }, closed: { opacity: 0 } }}
+          className="fixed top-0 left-0 w-screen h-screen bg-backdrop z-40"
+        >
+          <motion.aside
+            initial="closed"
+            animate="open"
+            exit="closed"
+            variants={{
+              open: { x: 0, opacity: 1, transition: { type: 'tween', duration: 0.25, ease: 'easeInOut' } },
+              closed: { x: '-100%', opacity: 0, transition: { type: 'tween', duration: 0.25, ease: 'easeInOut' } }
+            }}
+            className="flex flex-col items-center fixed top-0 left-0 w-[300px] h-screen bg-gray-50"
+          >
+            <ul className='pt-[70px] px-4 gap-2 w-full'>
+              <SideBarLink to='/'><FaHouse size='20' />Home</SideBarLink>
+              <SideBarLink to='/contents'><FaCalculator size='20' />Contents</SideBarLink>
+              <SideBarLink to='/roadmap'><FaMapLocationDot size='20' />Roadmap</SideBarLink>
+              <SideBarLink to='/leaderboard'><FaTrophy size='20' />Leaderboard</SideBarLink>
+              <SideBarLink to='/about'><FaCircleQuestion size='20' />About</SideBarLink>
+            </ul>
+            <div className='flex items-end grow'>
+              <img className="w-55 mb-20 bg-white rounded-full pt-4 px-2" src={MMM} alt="Profile" />
+            </div>
+          </motion.aside>
+        </motion.div>
+      )}
+    </AnimatePresence>
+  );
 }
 
 export default function HamburgerMenu({ className }) {

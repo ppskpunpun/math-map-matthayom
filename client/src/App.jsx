@@ -13,12 +13,12 @@ export default function App() {
         <Routes>
           <Route path='/' element={ <Layout /> }>
             <Route index element={ <Home /> } />
-            <Route path='signup' element={ <SignUp /> } />
             <Route path='contents' element={ <Home /> } />
             <Route path='practice' element={ <Home /> } />
             <Route path='leaderboard' element={ <Home /> } />
             <Route path='about' element={ <Home /> } />
           </Route>
+          <Route path='signup' element={ <SignUp /> } />
           <Route path='login' element={ <Login /> } />
           <Route path='/roadmap' element={ <Roadmap /> } />
         </Routes>

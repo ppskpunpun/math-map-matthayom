@@ -17,8 +17,10 @@ export default function TopNavBar() {
   const navigate = useNavigate();
 
   return (
-    <nav className="flex items-center bg-white px-6 py-2 sticky top-0 shadow-md font-serif z-10">
-      <HamburgerMenu className="md:hidden mr-3" />
+    <nav className="grid grid-cols-3 md:flex items-center bg-white px-6 py-2 sticky top-0 shadow-md font-serif z-10">
+      <div className="z-10">
+        <HamburgerMenu className="md:hidden" />
+      </div>
       <NavLink className="flex grow justify-center md:grow-0" to='/'>
         <Logo />
       </NavLink>

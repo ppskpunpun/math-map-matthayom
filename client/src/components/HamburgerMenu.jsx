@@ -8,7 +8,7 @@ import MMM from '../assets/MMM2.svg';
 function HamburgerBtn({ className, isOpen, onClick }) {
   return (
     <button 
-      className={`py-2 hover:py-1 w-10 h-10 ${isOpen ? 'bg-white' : 'bg-slate-200' } rounded-full flex flex-col justify-evenly items-center transition-all duration-200 hover:bg-slate-300 hover:cursor-pointer z-50` + " " + className}
+      className={`py-2 hover:py-1 w-10 h-10 ${isOpen ? 'bg-white' : 'bg-slate-200' } rounded-full flex flex-col justify-evenly items-center transition-all duration-200 hover:bg-slate-300 hover:cursor-pointer z-50 relative` + " " + className}
       onClick={ onClick }
     >
       <div className={`transition-all duration-400 rounded-full h-[3px] bg-slate-500 w-5 ${isOpen ? 'absolute rotate-45' : ''}`}></div>

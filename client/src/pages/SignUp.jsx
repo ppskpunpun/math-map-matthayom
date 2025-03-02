@@ -8,6 +8,7 @@ import Button from '../components/Button';
 import { Link } from 'react-router'
 
 export default function SignUp() {
+  const [ name, setName ] = useState('');
   const [ username, setUsername ] = useState('');
   const [ password, setPassword ] = useState('');
   const auth = useAuth();
@@ -41,6 +42,11 @@ export default function SignUp() {
         </Link>
         <h1 className='text-center text-3xl text-slate-700'>สร้างบัญชีผู้ใช้</h1>
         <form className='flex flex-col gap-5 w-full' onSubmit={handleSignUp}>
+          <InputField placeholder='name' onChange={ (e) => setName(e.target.value) } />
+          <div className='flex items-stretch'>
+            <span className='text-slate-500 bg-gray-300 flex items-center px-4'>birthday</span>
+            <InputField className='grow' type='date' onChange={(e) => console.log(e.target.value)} /> 
+          </div>
           <InputField placeholder='username' onChange={ (e) => setUsername(e.target.value) } />
           <InputField placeholder='password' type='password' onChange={ (e) => setPassword(e.target.value) } />
           <Button className='w-full' variant='regular_primary' type='submit'>Sign up</Button>

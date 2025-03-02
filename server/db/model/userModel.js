@@ -3,6 +3,14 @@ import bcrypt from 'bcryptjs'
 const { Schema, model } = mongoose
 
 const userSchema = new Schema({ 
+    name: {
+        type: String,
+        required: true,
+    },
+    birthday: {
+        type: String,
+        required: true,
+    },
     username: {
         type: String,
         required: true,

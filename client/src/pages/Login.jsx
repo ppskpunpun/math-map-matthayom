@@ -6,11 +6,15 @@ import InputField from '../components/InputField';
 import Button from '../components/Button';
 import { Link } from 'react-router'
 import MMM from '../assets/MMM2.svg'
+import { toThai } from '../utils';
+import { useNavigate } from 'react-router';
 
 export default function Login() {
   const [ username, setUsername ] = useState('');
   const [ password, setPassword ] = useState('');
+  const [ errorMsg, setErrorMsg ] = useState('');
   const auth = useAuth();
+  const navigate = useNavigate();
 
   function handleLogin(e) {
     e.preventDefault();
@@ -25,11 +29,15 @@ export default function Login() {
     })
       .then((res) => res.json())
       .then((data) => {
-
         if (data.success) {
           auth.setToken(Cookies.get('token'));
-          alert(data.message);
+          navigate('/');
+        } else {
+          setErrorMsg(data.message);
         }
+      })
+      .catch((err) => {
+        setErrorMsg('Internal server error');
       })
   }
 
@@ -40,6 +48,7 @@ export default function Login() {
           <img className='w-30' src={MMM} />
         </Link>
         <h1 className='text-center text-3xl text-slate-700'>เข้าสู่ระบบ</h1>
+        {errorMsg != '' && <div className='bg-red-100 w-full p-2 text-red-800 border-1 border-red-800 rounded-sm text-center'>{ toThai(errorMsg) }</div>}
         <form className='flex flex-col gap-5 w-full' onSubmit={handleLogin}>
           <InputField placeholder='username' onChange={ (e) => setUsername(e.target.value) } />
           <InputField placeholder='password' type='password' onChange={ (e) => setPassword(e.target.value) } />

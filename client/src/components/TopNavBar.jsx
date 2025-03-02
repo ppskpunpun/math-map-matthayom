@@ -1,7 +1,12 @@
-import { NavLink, useNavigate } from "react-router"
+import { useState, useEffect } from 'react';
+import { NavLink, useNavigate, Link } from "react-router"
+import { useAuth } from "../provider/authProvider"
 import Button from "./Button"
 import HamburgerMenu from "./HamburgerMenu"
 import Logo from "./Logo"
+import { FaUser, FaChevronDown, FaChevronUp } from "react-icons/fa6";
+import { MdOutlineExitToApp } from "react-icons/md";
+import { AiOutlineProfile } from "react-icons/ai";
 
 function NavLinkItem({ children, to='/' }) {
   return (
@@ -13,11 +18,47 @@ function NavLinkItem({ children, to='/' }) {
   )
 }
 
+function DropDownItem({ children, onClick }) {
+  return (
+    <li>
+      <button className='flex gap-2 items-center p-3 w-full hover:cursor-pointer bg-primary-400 hover:bg-primary-500 text-slate-800 hover:text-white transition-all duration-100' onClick={onClick}>{ children }</button>
+    </li>
+  )
+}
+
+function UserDropDown({ username }) {
+  const [ isDrop, setIsDrop ] = useState(false);
+  const navigate = useNavigate(); 
+  const auth = useAuth();
+  
+  return (
+    <div>
+      <button onClick={ () => setIsDrop((val) => !val) } className='flex hover:cursor-pointer items-stretch gap-2 text-slate-700'>
+        <FaUser />
+        {username}
+        {
+          isDrop
+          ? <FaChevronUp className='translate-y-0.5' />
+          : <FaChevronDown className='translate-y-0.5' />
+        } 
+      </button>
+      { isDrop &&
+        <ul className='fixed flex flex-col top-[50px] right-2 w-[150px] border-1 border-gray-200 gap-[1px] bg-gray-200 rounded-sm overflow-hidden'>
+          <DropDownItem onClick={() => navigate('/profile') }><AiOutlineProfile />Profile</DropDownItem>
+          <DropDownItem onClick={auth.logout}><MdOutlineExitToApp />Log out</DropDownItem>
+        </ul>
+      } 
+    </div>
+    
+  )
+}
+
 export default function TopNavBar() {
   const navigate = useNavigate();
+  const auth = useAuth(); 
 
   return (
-    <nav className="grid grid-cols-3 md:flex items-center bg-white px-6 py-2 sticky top-0 shadow-md font-serif z-10">
+    <nav className="grid grid-cols-3 md:flex items-center h-[56px] bg-white px-6 py-2 sticky top-0 shadow-md font-serif z-10">
       <div className="z-10">
         <HamburgerMenu className="md:hidden" />
       </div>
@@ -31,9 +72,13 @@ export default function TopNavBar() {
         <NavLinkItem to='/practice'>Practice</NavLinkItem>
         <NavLinkItem to='/leaderboard'>Leaderboard</NavLinkItem>
         <NavLinkItem to='/about'>About</NavLinkItem>
-      </div> 
+      </div>  
       <div className="flex justify-end">
-        <Button variant='outline_primary' onClick={ () => { navigate('/login') } }>Login &rarr;</Button> 
+        {
+          auth.isLogin
+          ? <UserDropDown username={auth.userData?.username} /> 
+          : <Button variant='outline_primary' onClick={ () => { navigate('/login') } }>Login &rarr;</Button> 
+        }
       </div>
     </nav>
   )

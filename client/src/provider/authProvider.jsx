@@ -6,14 +6,15 @@ import {
     useState
 } from 'react';
 import Cookies from 'js-cookie';
-import { VERIFY_URL } from '../config/apiConfig';
+import { VERIFY_URL, PROFILE_URL } from '../config/apiConfig';
 
 const AuthContext = createContext();
 
 // just (context).Provider wrapper
 function AuthProvider({ children }) {
-    const [token, _setToken] = useState(Cookies.get('token')); 
-    const [isLogin, setIsLogin] = useState(false);
+    const [ token, _setToken ] = useState(Cookies.get('token')); 
+    const [ isLogin, setIsLogin ] = useState(false);
+    const [ userData, setUserData ] = useState(null);
 
     // Why create setToken instead of using _setToken ?
     // Bc. We have to set or remove token's cookie
@@ -26,10 +27,16 @@ function AuthProvider({ children }) {
         }
     }; 
 
+    function logout() {
+        setToken();
+        setIsLogin(false);
+        setUserData(null);
+    }
+
     // check user login
     useEffect(() => {
         if (token) {
-            fetch(VERIFY_URL, {
+            fetch(PROFILE_URL, {
                 method: 'POST',
                 credentials: 'include',
                 headers: {
@@ -38,9 +45,9 @@ function AuthProvider({ children }) {
             })
                 .then((res) => res.json())
                 .then((data) => {
-                    if (data.valid) {
-                        console.log(data)
+                    if (data.success) {
                         setIsLogin(true);
+                        setUserData(data);
                     }
                 })
                 .catch(() => setIsLogin(false))
@@ -49,7 +56,7 @@ function AuthProvider({ children }) {
         }
     }, [token]);
 
-    const contextValue =  useMemo(() => ({ token, setToken, isLogin }), [token]);
+    const contextValue =  useMemo(() => ({ token, setToken, isLogin, userData, logout }), [token, userData]);
 
     return (
         <AuthContext.Provider value={contextValue}>{ children }</AuthContext.Provider>

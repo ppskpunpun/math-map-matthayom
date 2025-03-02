@@ -24,18 +24,29 @@ router.post('/verify', async (req, res) => {
     }
 })
 
+// route for getting user data
+router.post('/profile', async (req, res) => {
+    const token = await getToken(req, res);
+    try {
+        const user = await verifyToken(token);
+        res.status(200).json({...user._doc, success: true});
+    } catch(err) {
+        res.status(401).json({ message: 'Invalid token'});
+    }
+})
+
 router.post('/signup', async (req, res) => {
     try {
         // check if client send the appropriate inputs
-        const { username, password, createdAt } = req.body 
-        if (!username || !password) return res.status(400).json({ message: 'All fields are required'})
+        const { username, password, createdAt, name, birthday } = req.body 
+        if (!username || !password || !name || !birthday) return res.status(400).json({ message: 'All fields are required'})
 
         // check if username is already exists
         const existingUser = await User.findOne({ username })
         if (existingUser) return res.status(400).json({ message: "User already exists" })
 
         // create the user in database then generate jwt access token from MongoDB's ObjectId
-        const user = await User.create({ username, password, createdAt })
+        const user = await User.create({ username, password, createdAt, name, birthday })
         const token = createSecretToken(user._id)
 
         // send token back to user in cookie

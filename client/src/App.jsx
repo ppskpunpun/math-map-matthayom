@@ -8,6 +8,8 @@ import Home from './pages/Home'
 import Contents from './pages/Contents';
 import NotFound from './pages/NotFound';
 
+import IntegerNumber from './pages/contents/number-system/IntegerNumber';
+
 export default function App() {
   return (
     <AuthProvider>    
@@ -16,6 +18,7 @@ export default function App() {
           <Route path='/' element={ <Layout /> }>
             <Route index element={ <Home /> } />
             <Route path='contents' element={ <Contents /> } />
+            <Route path='contents/number-system/integer-number' element={ <IntegerNumber /> } />
             <Route path='practice' element={ <Home /> } />
             <Route path='leaderboard' element={ <Home /> } />
             <Route path='about' element={ <Home /> } />

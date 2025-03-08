@@ -5,13 +5,14 @@ import Button from "./Button"
 import HamburgerMenu from "./HamburgerMenu"
 import Logo from "./Logo"
 import { FaUser, FaChevronDown, FaChevronUp } from "react-icons/fa6";
+import { FaHouse, FaBookOpen, FaMapLocationDot, FaCircleQuestion, FaTrophy, FaDumbbell  } from 'react-icons/fa6';
 import { MdOutlineExitToApp } from "react-icons/md";
 import { AiOutlineProfile } from "react-icons/ai";
 
 function NavLinkItem({ children, to='/' }) {
   return (
     <NavLink to={to} end 
-      className={({ isActive }) => 'transition-all duration-300 hover:text-secondary-500 ' + (isActive && 'border-b-2 border-secondary-500 text-secondary-500')}
+      className={({ isActive }) => 'transition-all duration-300 hover:text-secondary-500 flex gap-1 ' + (isActive && 'border-b-2 border-secondary-500 text-secondary-500')}
     >
       { children }
     </NavLink>
@@ -66,12 +67,12 @@ export default function TopNavBar() {
         <Logo />
       </NavLink>
       <div className="hidden md:flex md:gap-5 lg:gap-12 justify-center text-slate-500 grow">
-        <NavLinkItem to='/'>Home</NavLinkItem>
-        <NavLinkItem to='/contents'>Contents</NavLinkItem>
-        <NavLinkItem to='/roadmap'>Roadmap</NavLinkItem>
-        <NavLinkItem to='/practice'>Practice</NavLinkItem>
-        <NavLinkItem to='/leaderboard'>Leaderboard</NavLinkItem>
-        <NavLinkItem to='/about'>About</NavLinkItem>
+        <NavLinkItem to='/'><FaHouse size='20' />Home</NavLinkItem>
+        <NavLinkItem to='/contents'><FaBookOpen size='20' />Contents</NavLinkItem>
+        <NavLinkItem to='/roadmap'><FaMapLocationDot size='20' />Roadmap</NavLinkItem>
+        <NavLinkItem to='/practice'><FaDumbbell size='20' />Practice</NavLinkItem>
+        <NavLinkItem to='/leaderboard'><FaTrophy size='20' />Leaderboard</NavLinkItem>
+        <NavLinkItem to='/about'><FaCircleQuestion size='20' />About</NavLinkItem>
       </div>  
       <div className="flex justify-end">
         {

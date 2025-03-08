@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { NavLink } from 'react-router';
 import { motion, AnimatePresence } from 'motion/react';
-import { FaHouse, FaCalculator, FaMapLocationDot, FaCircleQuestion, FaTrophy  } from 'react-icons/fa6';
+import { FaHouse, FaBookOpen, FaMapLocationDot, FaCircleQuestion, FaTrophy, FaDumbbell  } from 'react-icons/fa6';
 import Button from './Button';
 import MMM from '../assets/MMM2.svg';
 
@@ -49,8 +49,9 @@ function Sidebar({ isOpen }) {
           >
             <ul className='pt-[70px] px-4 gap-2 w-full'>
               <SideBarLink to='/'><FaHouse size='20' />Home</SideBarLink>
-              <SideBarLink to='/contents'><FaCalculator size='20' />Contents</SideBarLink>
+              <SideBarLink to='/contents'><FaBookOpen size='20' />Contents</SideBarLink>
               <SideBarLink to='/roadmap'><FaMapLocationDot size='20' />Roadmap</SideBarLink>
+              <SideBarLink to='/practice'><FaDumbbell size='20' />Practice</SideBarLink>
               <SideBarLink to='/leaderboard'><FaTrophy size='20' />Leaderboard</SideBarLink>
               <SideBarLink to='/about'><FaCircleQuestion size='20' />About</SideBarLink>
             </ul>

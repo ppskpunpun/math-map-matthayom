@@ -4,7 +4,7 @@ export function List({ children, title }) {
   return (
     <>
       <p className="text-slate-500 text-md">{title}</p>
-      <ul className="text-slate-500 text-md overflow-hidden">
+      <ul className="text-slate-500 text-md overflow-hidden mb-4">
         { children }
       </ul>
     </> 

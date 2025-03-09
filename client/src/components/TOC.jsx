@@ -3,7 +3,7 @@ import H2 from "./H2"
 function ContentLink({children, scrollTo}) {
   return (
     <li>
-      <button onClick={() => scrollTo.current?.scrollIntoView({ behavior: 'smooth', block: 'center' })} className="text-md text-slate-700 bg-primary-400 hover:underline hover:cursor-pointer px-2 py-0.5 rounded-sm">{children}</button>
+      <button onClick={() => scrollTo.current?.scrollIntoView({ behavior: 'smooth', block: 'center' })} className="text-md text-slate-700 bg-primary-400 hover:underline hover:cursor-pointer px-2 py-0.5 rounded-sm active:bg-primary-500 active:text-white duration-100 transition-all">{children}</button>
     </li>
   )
 }

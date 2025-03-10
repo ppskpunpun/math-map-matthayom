@@ -7,6 +7,8 @@ import Roadmap from './pages/Roadmap';
 import Home from './pages/Home'
 import Contents from './pages/Contents';
 import NotFound from './pages/NotFound';
+import About from './pages/About';
+import Practice from './pages/Practice'
 
 import IntegerNumber from './pages/contents/number-system/IntegerNumber';
 
@@ -19,9 +21,9 @@ export default function App() {
             <Route index element={ <Home /> } />
             <Route path='contents' element={ <Contents /> } />
             <Route path='contents/number-system/integer-number' element={ <IntegerNumber /> } />
-            <Route path='practice' element={ <Home /> } />
+            <Route path='practice' element={ <Practice /> } />
             <Route path='leaderboard' element={ <Home /> } />
-            <Route path='about' element={ <Home /> } />
+            <Route path='about' element={ <About /> } />
             <Route path='*' element={ <NotFound /> }/>
           </Route>
           <Route path='signup' element={ <SignUp /> } />

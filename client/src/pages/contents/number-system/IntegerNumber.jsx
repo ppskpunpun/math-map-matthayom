@@ -55,13 +55,42 @@ export default function IntegerNumber() {
         <H3>การบวกและลบจำนวนเต็ม</H3> 
         <P>เราสามารถใช้เส้นจำนวนในการบวกและลบได้ โดยที่<b>การบวกคือไปทางขวา</b> ส่วน<b>การลบคือไปทางซ้าย</b></P>
         <NumberLineAdd />
+        <P>การลบด้วยจำนวนลบนั้นก็สามารถทำได้เหมือนกัน เช่น 2 - (-3) หากเรามองว่าการลบคือการกลับด้านซ้ายขวา การลบลบก็จะกลายเป็นบวก</P>
+        <P><b>x - (-y) = x + y</b></P>
         <H3>การคูณจำนวนเต็ม</H3> 
+        <P>การคูณจำนวนเต็มบวกด้วยจำนวนเต็มลบ สามารถคำนวณได้โดยใช้ความหมายของการคูณและหลักการบวกจำนวนเต็มลบ</P>
+        <P mb=''>ตัวอย่าง 2 × (-3) = ?</P> 
+        <P mb=''>จะได้ (-3) + (-3) = -6</P> 
+        <P>หรือ (-2) + (-2) + (-2) = -6</P> 
+        <P>การคูณจำนวนเต็มลบด้วยจำนวนเต็มลบ สามารถคำนวณได้โดยการนึกถึงเส้นจำนวน เมื่อลบลบก็คือการกลับด้านมาเป็นบวก</P>
+        <P mb=''>ตัวอย่าง (-2) × (-3) = ?</P> 
+        <P mb=''>จะได้ -(-3) - (-3) = 6</P> 
+        <P>หรือ -(-2) - (-2) - (-2) = 6</P>
         <H3>การหารจำนวนเต็ม</H3> 
+        <P>สามารถทำได้คล้ายกับการคูณจำนวนเต็มจากนิยาม <b>ตัวหาร × ผลหาร = ตัวตั้ง</b> (ตัวหารต้องไม่เป็น 0)</P> 
+        <P mb=''>ตัวอย่าง -24 ÷ 4 = ?</P>
+        <P mb=''>เนื่องจาก 4 × (-6) = 24</P>
+        <P>ดังนั้น -24 ÷ 4 = -6</P>
         <Sep />
         <H2>สมบัติของการบวกและการคูณจำนวนเต็ม <div ref={c4} /></H2>
-        <P>Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo non dicta quos debitis laudantium eius, nihil reprehenderit natus necessitatibus est nobis dignissimos! Dolorem unde reprehenderit doloremque perferendis est possimus, reiciendis quam! Quibusdam eum eius similique est ducimus repudiandae sunt impedit expedita eaque dolores, vel, omnis veritatis possimus ea ex nisi alias obcaecati? Laudantium error consequuntur corrupti nobis ipsam eligendi? Soluta velit non quaerat, rerum rem adipisci reiciendis aperiam molestias vel quos inventore ipsam. Culpa laborum tempora voluptatum dolores tenetur nesciunt ab ducimus sequi reprehenderit? Eaque at delectus est et. Facere, beatae sed aperiam ratione illum fuga autem, labore porro eveniet, recusandae quisquam sit cum mollitia quasi veritatis maiores velit ea inventore perspiciatis sunt odit tempora. Iste numquam asperiores rerum iure quisquam, laudantium nemo corporis harum dolorem suscipit sapiente aliquid, ea quam tempora alias sint dolore error cumque facere eum doloremque, culpa doloribus. Aut quos ea, debitis earum labore architecto, explicabo tempore quisquam quasi officiis, nesciunt voluptates eligendi nulla sit blanditiis exercitationem ex id. Magnam odit et amet, molestiae modi enim eum sunt maiores ducimus laboriosam obcaecati vel cum doloremque ullam quia reprehenderit repellat, nisi rerum. Ex pariatur sunt culpa fuga exercitationem aspernatur reiciendis, est veniam ducimus excepturi expedita doloribus veritatis!</P>
-        <P>Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo non dicta quos debitis laudantium eius, nihil reprehenderit natus necessitatibus est nobis dignissimos! Dolorem unde reprehenderit doloremque perferendis est possimus, reiciendis quam! Quibusdam eum eius similique est ducimus repudiandae sunt impedit expedita eaque dolores, vel, omnis veritatis possimus ea ex nisi alias obcaecati? Laudantium error consequuntur corrupti nobis ipsam eligendi? Soluta velit non quaerat, rerum rem adipisci reiciendis aperiam molestias vel quos inventore ipsam. Culpa laborum tempora voluptatum dolores tenetur nesciunt ab ducimus sequi reprehenderit? Eaque at delectus est et. Facere, beatae sed aperiam ratione illum fuga autem, labore porro eveniet, recusandae quisquam sit cum mollitia quasi veritatis maiores velit ea inventore perspiciatis sunt odit tempora. Iste numquam asperiores rerum iure quisquam, laudantium nemo corporis harum dolorem suscipit sapiente aliquid, ea quam tempora alias sint dolore error cumque facere eum doloremque, culpa doloribus. Aut quos ea, debitis earum labore architecto, explicabo tempore quisquam quasi officiis, nesciunt voluptates eligendi nulla sit blanditiis exercitationem ex id. Magnam odit et amet, molestiae modi enim eum sunt maiores ducimus laboriosam obcaecati vel cum doloremque ullam quia reprehenderit repellat, nisi rerum. Ex pariatur sunt culpa fuga exercitationem aspernatur reiciendis, est veniam ducimus excepturi expedita doloribus veritatis!</P>
-        <P>Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo non dicta quos debitis laudantium eius, nihil reprehenderit natus necessitatibus est nobis dignissimos! Dolorem unde reprehenderit doloremque perferendis est possimus, reiciendis quam! Quibusdam eum eius similique est ducimus repudiandae sunt impedit expedita eaque dolores, vel, omnis veritatis possimus ea ex nisi alias obcaecati? Laudantium error consequuntur corrupti nobis ipsam eligendi? Soluta velit non quaerat, rerum rem adipisci reiciendis aperiam molestias vel quos inventore ipsam. Culpa laborum tempora voluptatum dolores tenetur nesciunt ab ducimus sequi reprehenderit? Eaque at delectus est et. Facere, beatae sed aperiam ratione illum fuga autem, labore porro eveniet, recusandae quisquam sit cum mollitia quasi veritatis maiores velit ea inventore perspiciatis sunt odit tempora. Iste numquam asperiores rerum iure quisquam, laudantium nemo corporis harum dolorem suscipit sapiente aliquid, ea quam tempora alias sint dolore error cumque facere eum doloremque, culpa doloribus. Aut quos ea, debitis earum labore architecto, explicabo tempore quisquam quasi officiis, nesciunt voluptates eligendi nulla sit blanditiis exercitationem ex id. Magnam odit et amet, molestiae modi enim eum sunt maiores ducimus laboriosam obcaecati vel cum doloremque ullam quia reprehenderit repellat, nisi rerum. Ex pariatur sunt culpa fuga exercitationem aspernatur reiciendis, est veniam ducimus excepturi expedita doloribus veritatis!</P>
+        <P>เมื่อ a, b และ c เป็นจำนวนเต็มใดๆ</P>
+        <List title='1. สมบัติการสลับที่'>
+          <Li>a + b = b + a</Li>
+          <Li>a × b = b × a</Li>
+        </List> 
+        <List title='2. สมบัติการเปลี่ยนหมู่'>
+          <Li>(a + b) + c = a + (b + c)</Li>
+          <Li>(a × b) × c = a × (b × c)</Li>
+        </List>
+        <List title='3. สมบัติการแจกแจง'>
+          <Li>a × (b + c) = (a × b) + (a × c)</Li>
+        </List>
+        <List title='4. สมบัติของหนึ่งและศูนย์'>
+          <Li>a × 1 = a</Li>
+          <Li>a + 0 = a</Li>
+          <Li>a × 0 = 0</Li>
+          <Li>0 ÷ a = 0 (เมื่อ a ไม่เป็น 0)</Li> 
+        </List>
       </Main>
     </div>
     

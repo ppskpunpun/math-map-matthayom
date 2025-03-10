@@ -1,5 +1,5 @@
-export default function P({children}) {
+export default function P({children, mb='mb-4'}) {
   return (
-    <p className="text-slate-500 text-md mb-4">{ children }</p>
+    <p className={`text-slate-500 text-md ${mb}`}>{ children }</p>
   )
 }

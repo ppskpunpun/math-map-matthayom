@@ -23,7 +23,7 @@ export default function NumberLineAdd() {
   }, [a, b]);
 
   return (
-    <div className='border-2 border-slate-200'>
+    <div className='border-2 border-slate-200 mb-4'>
       <div className='pt-2 px-4 flex gap-4 items-center text-slate-700'>
         <Select className='bg-primary-400' defaultIdx={5} onChange={(e) => setA(parseInt(e.target.value))} options={numbers} />
         <div className='text-xl font-bold'>+</div>

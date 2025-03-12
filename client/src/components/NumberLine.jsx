@@ -45,6 +45,8 @@ export default function NumberLine({ curNumber, highlight }) {
               bgClass = 'bg-primary-400';
             } else if (highlight && highlight[i] == 2) {
               bgClass = 'bg-secondary-600';
+            } else if (highlight && highlight[i] == 3) {
+              bgClass = 'bg-purple-300'
             }
             return (
               <div key={x} className={`relative border-l-[2px] border-slate-500 flex items-center justify-center ${bgClass}`}>

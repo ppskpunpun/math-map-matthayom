@@ -28,7 +28,7 @@ export default function About() {
       </div>
       <div className='mt-16'>
         <H2>Project Presentation</H2>
-        <a href='https://www.canva.com/design/DAGhCrG5e64/zor4cbzk18nVtk1yPthlEw/view?utm_content=DAGhCrG5e64&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=h34d6f49fd3#6' className='text-blue-400 underline'>View Canva Presentation</a>
+        <a href='https://www.canva.com/design/DAGeZm91ywg/YzKys5GUbQWB4uNwwP17sQ/view?utm_content=DAGeZm91ywg&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=h2068a53069' className='text-blue-400 underline'>View Canva Presentation</a>
       </div>
     </Main>
   )

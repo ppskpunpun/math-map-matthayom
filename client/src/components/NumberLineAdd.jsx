@@ -17,7 +17,7 @@ export default function NumberLineAdd() {
     let ss =  s + (b*a > 0 ? a: (Math.abs(a) >= Math.abs(b)) ? ((a>b) ? a-1:a+1):a);
     
     for (let i=0; i!=a; i+=Math.sign(a)) h[s + i] = 1;
-    for (let i=0; i!=b; i+=Math.sign(b)) h[ss + i ] = 2;
+    for (let i=0; i!=b; i+=Math.sign(b)) h[ss + i] += 2;
 
     setHighlight(h);
   }, [a, b]);

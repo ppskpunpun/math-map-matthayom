@@ -1,0 +1,393 @@
+[
+  {
+    "id": "1",
+    "position": {
+      "x": 0,
+      "y": 0
+    },
+    "data": {
+      "label": "คณิตศาสตร์"
+    },
+    "style": {
+      "fontSize": "2rem",
+      "borderRadius": 8,
+      "border": 0,
+      "fontFamily": "Noto Serif Thai",
+      "color": "#252525"
+    }
+  },
+  {
+    "id": "2",
+    "position": {
+      "x": 246.0843518605223,
+      "y": 202.23418402615206
+    },
+    "data": {
+      "label": "ม.4"
+    },
+    "style": {
+      "fontSize": "1.5rem",
+      "borderRadius": 8,
+      "border": 0,
+      "fontFamily": "Noto Serif Thai",
+      "color": "#252525"
+    }
+  },
+  {
+    "id": "3",
+    "position": {
+      "x": -57.0277785720689,
+      "y": 615.1890196506552
+    },
+    "data": {
+      "label": "ม.5"
+    },
+    "style": {
+      "fontSize": "1.5rem",
+      "borderRadius": 8,
+      "border": 0,
+      "fontFamily": "Noto Serif Thai",
+      "color": "#252525"
+    }
+  },
+  {
+    "id": "4",
+    "position": {
+      "x": 99.92247713889904,
+      "y": 1086.4747707217778
+    },
+    "data": {
+      "label": "ม.6"
+    },
+    "style": {
+      "fontSize": "1.5rem",
+      "borderRadius": 8,
+      "border": 0,
+      "fontFamily": "Noto Serif Thai",
+      "color": "#252525"
+    }
+  },
+  {
+    "id": "5",
+    "position": {
+      "x": 75.52719912826439,
+      "y": 303.59711225280336
+    },
+    "data": {
+      "label": "เซต",
+      "link": ""
+    },
+    "style": {
+      "backgroundColor": "lightblue",
+      "cursor": "pointer",
+      "borderRadius": 8,
+      "border": 0,
+      "fontFamily": "Noto Serif Thai",
+      "color": "#252525"
+    }
+  },
+  {
+    "id": "6",
+    "position": {
+      "x": -23.428408531758734,
+      "y": 382.3418402615207
+    },
+    "data": {
+      "label": "ตรรกศาสตร์",
+      "link": ""
+    },
+    "style": {
+      "backgroundColor": "lightblue",
+      "cursor": "pointer",
+      "borderRadius": 8,
+      "border": 0,
+      "fontFamily": "Noto Serif Thai",
+      "color": "#252525"
+    }
+  },
+  {
+    "id": "7",
+    "position": {
+      "x": -119.87347220921654,
+      "y": 461.086568270238
+    },
+    "data": {
+      "label": "จำนวนจริง",
+      "link": ""
+    },
+    "style": {
+      "backgroundColor": "lightblue",
+      "cursor": "pointer",
+      "borderRadius": 8,
+      "border": 0,
+      "fontFamily": "Noto Serif Thai",
+      "color": "#252525"
+    }
+  },
+  {
+    "id": "8",
+    "position": {
+      "x": 346.65594332876356,
+      "y": 341.1498321656298
+    },
+    "data": {
+      "label": "ความสัมพันธ์และฟังก์ชัน",
+      "link": ""
+    },
+    "style": {
+      "backgroundColor": "lightgreen",
+      "cursor": "pointer",
+      "borderRadius": 8,
+      "border": 0,
+      "fontFamily": "Noto Serif Thai",
+      "color": "#252525"
+    }
+  },
+  {
+    "id": "9",
+    "position": {
+      "x": 265.1687037210446,
+      "y": 437.46836805230413
+    },
+    "data": {
+      "label": "ฟังก์ชันเอกซ์โพแนนเชียล และฟังก์ชันลอการิทึม",
+      "link": ""
+    },
+    "style": {
+      "backgroundColor": "lightgreen",
+      "cursor": "pointer",
+      "borderRadius": 8,
+      "border": 0,
+      "fontFamily": "Noto Serif Thai",
+      "color": "#252525"
+    }
+  },
+  {
+    "id": "10",
+    "position": {
+      "x": 542.8901273549158,
+      "y": 301.02330437484636
+    },
+    "data": {
+      "label": "เรขาคณิตวิเคราะห์",
+      "link": ""
+    },
+    "style": {
+      "backgroundColor": "pink",
+      "cursor": "pointer",
+      "borderRadius": 8,
+      "border": 0,
+      "fontFamily": "Noto Serif Thai",
+      "color": "#252525"
+    }
+  },
+  {
+    "id": "11",
+    "position": {
+      "x": -300.49029942460146,
+      "y": 697.3589536309554
+    },
+    "data": {
+      "label": "ฟังก์ชันตรีโกณมิติ",
+      "link": ""
+    },
+    "style": {
+      "backgroundColor": "lightgreen",
+      "cursor": "pointer",
+      "borderRadius": 8,
+      "border": 0,
+      "fontFamily": "Noto Serif Thai",
+      "color": "#252525"
+    }
+  },
+  {
+    "id": "12",
+    "position": {
+      "x": -248.33620578370827,
+      "y": 789.8115663194459
+    },
+    "data": {
+      "label": "เมทริกซ์",
+      "link": ""
+    },
+    "style": {
+      "backgroundColor": "lightblue",
+      "cursor": "pointer",
+      "borderRadius": 8,
+      "border": 0,
+      "fontFamily": "Noto Serif Thai",
+      "color": "#252525"
+    }
+  },
+  {
+    "id": "13",
+    "position": {
+      "x": -129.32817662657257,
+      "y": 868.7207303227942
+    },
+    "data": {
+      "label": "จำนวนเชิงซ้อน",
+      "link": ""
+    },
+    "style": {
+      "backgroundColor": "lightskyblue",
+      "cursor": "pointer",
+      "borderRadius": 8,
+      "border": 0,
+      "fontFamily": "Noto Serif Thai",
+      "color": "#252525"
+    }
+  },
+  {
+    "id": "14",
+    "position": {
+      "x": 91.51118799604293,
+      "y": 751.7749951488187
+    },
+    "data": {
+      "label": "หลักการนับเบื้องต้น",
+      "link": ""
+    },
+    "style": {
+      "backgroundColor": "moccasin",
+      "cursor": "pointer",
+      "borderRadius": 8,
+      "border": 0,
+      "fontFamily": "Noto Serif Thai",
+      "color": "#252525"
+    }
+  },
+  {
+    "id": "15",
+    "position": {
+      "x": 157.473129404771,
+      "y": 854.6429056448502
+    },
+    "data": {
+      "label": "ความน่าจะเป็น",
+      "link": ""
+    },
+    "style": {
+      "backgroundColor": "moccasin",
+      "cursor": "pointer",
+      "borderRadius": 8,
+      "border": 0,
+      "fontFamily": "Noto Serif Thai",
+      "color": "#252525"
+    }
+  },
+  {
+    "id": "16",
+    "position": {
+      "x": -81.0481651070086,
+      "y": 1219.1233945186736
+    },
+    "data": {
+      "label": "ลำดับและอนุกรม",
+      "link": ""
+    },
+    "style": {
+      "backgroundColor": "lightgreen",
+      "cursor": "pointer",
+      "borderRadius": 8,
+      "border": 0,
+      "fontFamily": "Noto Serif Thai",
+      "color": "#252525"
+    }
+  },
+  {
+    "id": "17",
+    "position": {
+      "x": 278.00229344943614,
+      "y": 1213.0715593587972
+    },
+    "data": {
+      "label": "แคลคูลัสเบื้องต้น",
+      "link": ""
+    },
+    "style": {
+      "backgroundColor": "lightcoral",
+      "cursor": "pointer",
+      "borderRadius": 8,
+      "border": 0,
+      "fontFamily": "Noto Serif Thai",
+      "color": "#252525"
+    }
+  },
+  {
+    "id": "18",
+    "position": {
+      "x": 99.42889906420513,
+      "y": 1272.4958715241298
+    },
+    "data": {
+      "label": "ความหมายของสติถิศาสตร์และข้อมูล",
+      "link": ""
+    },
+    "style": {
+      "backgroundColor": "lemonchiffon",
+      "cursor": "pointer",
+      "borderRadius": 8,
+      "border": 0,
+      "fontFamily": "Noto Serif Thai",
+      "color": "#252525"
+    }
+  },
+  {
+    "id": "19",
+    "position": {
+      "x": 74.88119238019863,
+      "y": 1380.3100914444035
+    },
+    "data": {
+      "label": "การวิเคราะห์และนำเสนอข้อมูลเชิงคุณภาพ",
+      "link": ""
+    },
+    "style": {
+      "backgroundColor": "lemonchiffon",
+      "cursor": "pointer",
+      "borderRadius": 8,
+      "border": 0,
+      "fontFamily": "Noto Serif Thai",
+      "color": "#252525"
+    }
+  },
+  {
+    "id": "20",
+    "position": {
+      "x": 163.33715574906014,
+      "y": 1491.7766052144411
+    },
+    "data": {
+      "label": "การวิเคราะห์และนำเสนอข้อมูลเชิงปริมาณ",
+      "link": ""
+    },
+    "style": {
+      "backgroundColor": "lemonchiffon",
+      "cursor": "pointer",
+      "borderRadius": 8,
+      "border": 0,
+      "fontFamily": "Noto Serif Thai",
+      "color": "#252525"
+    }
+  },
+  {
+    "id": "21",
+    "position": {
+      "x": 106.0045868988721,
+      "y": 1601.5275227276584
+    },
+    "data": {
+      "label": "ตัวแปรสุ่มและการแจกแจงความน่าจะเป็น",
+      "link": ""
+    },
+    "style": {
+      "backgroundColor": "lemonchiffon",
+      "cursor": "pointer",
+      "borderRadius": 8,
+      "border": 0,
+      "fontFamily": "Noto Serif Thai",
+      "color": "#252525"
+    }
+  }
+]

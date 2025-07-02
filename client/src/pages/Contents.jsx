@@ -17,6 +17,13 @@ function ChapterList({ children }) {
 }
 
 function Chapter({ children, to, color, level }) {
+  // only highschool level topics will appear
+  if (parseInt(level) < 4) {
+    return (
+      <></>
+    )
+  }
+
   const colors = {
     'blue': 'bg-blue-200 hover:bg-blue-300',
     'teal': 'bg-teal-200 hover:bg-teal-300',
@@ -55,11 +62,11 @@ export default function Contents() {
         </ChapterList>
         <Title>นิพจน์ สมการ และอสมการ</Title>
         <ChapterList>
-          <Chapter color='teal' to='/x' level='1'>สมการเชิงเส้นตัวแปรเดียว</Chapter> 
-          <Chapter color='teal' to='/x' level='3'>อสมการเชิงเส้นตัวแปรเดียว</Chapter> 
-          <Chapter color='teal' to='/x' level='3'>สมการกำลังสองตัวแปรเดียว</Chapter> 
-          <Chapter color='teal' to='/x' level='3'>ระบบสมการเชิงเส้นสองตัวแปร</Chapter> 
-          <Chapter color='teal' to='/x' level='5'>เมทริกซ์</Chapter> 
+          <Chapter color='teal' to='/x' level='1'>สมการเชิงเส้นตัวแปรเดียว</Chapter>
+          <Chapter color='teal' to='/x' level='3'>อสมการเชิงเส้นตัวแปรเดียว</Chapter>
+          <Chapter color='teal' to='/x' level='3'>สมการกำลังสองตัวแปรเดียว</Chapter>
+          <Chapter color='teal' to='/x' level='3'>ระบบสมการเชิงเส้นสองตัวแปร</Chapter>
+          <Chapter color='teal' to='/x' level='5'>เมทริกซ์</Chapter>
         </ChapterList>
         <Title>ความสัมพันธ์และฟังก์ชัน</Title>
         <ChapterList>

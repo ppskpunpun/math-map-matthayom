@@ -2,16 +2,9 @@ import express from 'express'
 import bcrypt from 'bcryptjs'
 import jwt from 'jsonwebtoken'
 import User from '../db/model/userModel.js'
-import { createSecretToken, verifyToken } from '../util/secretToken.js';
+import { createSecretToken, verifyToken, getToken } from '../util/secretToken.js';
 
 const router = express.Router();
-
-// get the token in cookie
-async function getToken(req, res) {
-    const token = req.cookies.token;
-    if (!token) res.status(401).json({ message: 'Token not found' });
-    else return token;
-}
 
 // route for verifying the token
 router.post('/verify', async (req, res) => {

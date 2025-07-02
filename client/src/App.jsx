@@ -9,13 +9,14 @@ import Contents from './pages/Contents';
 import NotFound from './pages/NotFound';
 import About from './pages/About';
 import Practice from './pages/Practice'
+import CreatePracticeQuestion from './pages/CreatePracticeQuestion';
 import Leaderboard from './pages/Leaderboard';
 
 import IntegerNumber from './pages/contents/number-system/IntegerNumber';
 
 export default function App() {
   return (
-    <AuthProvider>    
+    <AuthProvider>
       <HashRouter>
         <Routes>
           <Route path='/' element={ <Layout /> }>
@@ -23,6 +24,7 @@ export default function App() {
             <Route path='contents' element={ <Contents /> } />
             <Route path='contents/number-system/integer-number' element={ <IntegerNumber /> } />
             <Route path='practice' element={ <Practice /> } />
+            <Route path='create-practice-question' element={ <CreatePracticeQuestion /> } />
             <Route path='leaderboard' element={ <Leaderboard /> } />
             <Route path='about' element={ <About /> } />
             <Route path='*' element={ <NotFound /> }/>

@@ -9,6 +9,7 @@ import connectDB from "./db/connection.js"
 
 // routes
 import authRoute from './routes/auth.js'
+import practiceQuestionRoute from './routes/practiceQuestion.js'
 
 // connect to MongoDB
 connectDB()
@@ -16,7 +17,7 @@ connectDB()
 const PORT = process.env.PORT || 5050
 const app = express()
 
-app.use(cors({ 
+app.use(cors({
     origin: ['http://localhost:5173'],
     methods: ['GET', 'POST'],
     credentials: true,
@@ -25,6 +26,7 @@ app.use(express.json())
 app.use(cookieParser())
 
 app.use('/auth', authRoute)
+app.use('/practiceQuestionRoute', practiceQuestionRoute)
 
 app.listen(PORT, () => {
     console.log(`Sever is now listening on port ${PORT}`)

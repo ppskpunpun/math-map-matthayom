@@ -10,7 +10,7 @@ async function verifyToken(token) {
         else throw new Error('Invalid token')
     } catch(err) {
         throw new Error('Invalid token');
-    } 
+    }
 }
 
 function createSecretToken(id) {
@@ -19,4 +19,11 @@ function createSecretToken(id) {
     })
 }
 
-export { createSecretToken, verifyToken }
+// get the token in cookie
+async function getToken(req, res) {
+    const token = req.cookies.token;
+    if (!token) res.status(401).json({ message: 'Token not found' });
+    else return token;
+}
+
+export { createSecretToken, verifyToken, getToken }

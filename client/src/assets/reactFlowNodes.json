@@ -211,7 +211,7 @@
       "link": ""
     },
     "style": {
-      "backgroundColor": "lightblue",
+      "backgroundColor": "lightskyblue",
       "cursor": "pointer",
       "borderRadius": 8,
       "border": 0,
@@ -230,7 +230,7 @@
       "link": ""
     },
     "style": {
-      "backgroundColor": "lightskyblue",
+      "backgroundColor": "lightblue",
       "cursor": "pointer",
       "borderRadius": 8,
       "border": 0,

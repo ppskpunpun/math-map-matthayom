@@ -22,7 +22,7 @@ function Hero() {
         <span className="text-accent-1">Map</span>
         <span className="text-secondary-500">Matthayom</span>
       </h1>
-      <p className="text-gray-50 text-xs md:text-lg text-center">เว็บไซต์สำหรับ การเรียนการสอน ทบทวน ทำโจทย์ฝึกฝน ในวิชาคณิตศาสตร์ระดับชั้นมัธยมศึกษา โดยมีเนื้อหาอ้างอิงตามหลักสูตร สสวท.</p> 
+      <p className="text-gray-50 text-xs md:text-lg text-center">เว็บไซต์สำหรับ การเรียนการสอน ทบทวน ทำโจทย์ฝึกฝน ในวิชาคณิตศาสตร์ระดับชั้นมัธยมศึกษาตอนปลาย โดยมีเนื้อหาอ้างอิงตามหลักสูตร สสวท.</p>
     </section>
   )
 }
@@ -47,7 +47,7 @@ export default function Home() {
             <Card>
               <H2 className='text-slate-600 text-center'>บทเรียน</H2>
               <FaBookOpen className='text-slate-600' size='120' />
-              <P className='w-[80%] text-center'>เราได้รวบรวมเนื้อหาคณิตศาสตร์ ตั้งแต่ ม.1-6 ไว้ให้หมดแล้ว โดยแยกไว้เป็นบทต่างๆ สามารถเลือกอ่านแต่ละบทได้ตามที่ต้องการ พร้อมระบบ interactive ต่างๆที่จะทำให้เข้าใจคณิตศาสตร์ได้ง่ายขึ้น</P>
+              <P className='w-[80%] text-center'>เราได้รวบรวมเนื้อหาคณิตศาสตร์ ตั้งแต่ ม.4-6 ไว้ให้หมดแล้ว โดยแยกไว้เป็นบทต่างๆ สามารถเลือกอ่านแต่ละบทได้ตามที่ต้องการ พร้อมระบบ interactive ต่างๆที่จะทำให้เข้าใจคณิตศาสตร์ได้ง่ายขึ้น</P>
               <Button variant='outline_secondary' onClick={() => navigate('/contents')}>Contents</Button>
             </Card>
             <Card>

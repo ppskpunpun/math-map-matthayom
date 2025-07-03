@@ -28,6 +28,12 @@ const practiceQuestionSchema = new Schema({
         type: [String],
         default: [],
     },
+    source: {
+        type: String
+    },
+    linkToSource: {
+        type: String
+    },
     questions: [{
         type: {
             type: String,
@@ -44,6 +50,8 @@ const practiceQuestionSchema = new Schema({
         correctAnserIndex: Number,
         // for written
         correctAnswer: String,
+
+        required: true,
     }],
 })
 

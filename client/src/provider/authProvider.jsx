@@ -12,8 +12,9 @@ const AuthContext = createContext();
 
 // just (context).Provider wrapper
 function AuthProvider({ children }) {
-    const [ token, _setToken ] = useState(Cookies.get('token')); 
+    const [ token, _setToken ] = useState(Cookies.get('token'));
     const [ isLogin, setIsLogin ] = useState(false);
+    const [ isLoading, setIsLoading ] = useState(false)
     const [ userData, setUserData ] = useState(null);
 
     // Why create setToken instead of using _setToken ?
@@ -25,7 +26,7 @@ function AuthProvider({ children }) {
         } else {
             Cookies.remove('token');
         }
-    }; 
+    };
 
     function logout() {
         setToken();
@@ -35,6 +36,7 @@ function AuthProvider({ children }) {
 
     // check user login
     useEffect(() => {
+      setIsLoading(true)
         if (token) {
             fetch(PROFILE_URL, {
                 method: 'POST',
@@ -54,16 +56,17 @@ function AuthProvider({ children }) {
         } else {
             setIsLogin(false);
         }
+    setIsLoading(false)
     }, [token]);
 
-    const contextValue =  useMemo(() => ({ token, setToken, isLogin, userData, logout }), [token, userData]);
+    const contextValue =  useMemo(() => ({ token, setToken, isLogin, userData, logout, isLoading }), [token, userData]);
 
     return (
         <AuthContext.Provider value={contextValue}>{ children }</AuthContext.Provider>
     )
 }
 
-// custom state used to receiving authorization information in AuthContext 
+// custom state used to receiving authorization information in AuthContext
 export const useAuth = () => {
     return useContext(AuthContext);
 }

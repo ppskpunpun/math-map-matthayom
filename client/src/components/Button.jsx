@@ -6,13 +6,13 @@ export default function Button({ className, children, variant='', onClick, type=
     outline_primary: 'w-25 h-10 rounded-sm hover:rounded-4xl hover:bg-primary-500 text-primary-500 hover:text-slate-100 border-primary-500 border-2',
     outline_secondary: 'w-25 h-10 rounded-sm hover:rounded-4xl hover:bg-secondary-500 text-secondary-500 hover:text-slate-100 border-secondary-500 border-2',
     outline_secondary_hw: 'rounded-sm hover:rounded-4xl hover:bg-secondary-500 text-secondary-500 hover:text-slate-100 border-secondary-500 border-2',
-    circle: 'w-10 h-10 bg-slate-300',
+    circle: 'w-10 h-10 bg-slate-300 rounded-full',
   }
-  
+
   return (
-    <button 
-      onClick={onClick} 
-      type={type} 
+    <button
+      onClick={onClick}
+      type={type}
       className={ `${className} ${btnClass} ${(variants === '') ? variants["regular_primary"] : variants[variant]}` }
     >
       { children }

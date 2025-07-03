@@ -1,168 +1,8 @@
+import { useState, useEffect } from 'react'
+import { useNavigate } from 'react-router'
+import { useAuth } from '../provider/authProvider'
 import Main from "../components/Main"
-
-// # ชื่อ หมวดหมู่ ความยาก ชั้น สถานะ
-const problems = [
-  {
-    title: 'บวกเลขง่ายๆ',
-    tags: ['บวกเลข'],
-    difficulty: 1,
-    level: 1,
-    score: 100,
-    totalScore: 100,
-  },
-  {
-    title: 'ลบเลขง่ายๆ',
-    tags: ['ลบเลข'],
-    difficulty: 1,
-    level: 1,
-    score: 100,
-    totalScore: 100,
-  },
-  {
-    title: 'คูณเลขเบื้องต้น',
-    tags: ['คูณเลข'],
-    difficulty: 2,
-    level: 1,
-    score: 90,
-    totalScore: 120,
-  },
-  {
-    title: 'หารเลขเบื้องต้น',
-    tags: ['หารเลข'],
-    difficulty: 2,
-    level: 1,
-    score: -1,
-    totalScore: 120,
-  },
-  {
-    title: 'ทศนิยมพื้นฐาน',
-    tags: ['ทศนิยม'],
-    difficulty: 2,
-    level: 1,
-    score: -1,
-    totalScore: 130,
-  },
-  {
-    title: 'เศษส่วนเบื้องต้น',
-    tags: ['เศษส่วน'],
-    difficulty: 2,
-    level: 1,
-    score: -1,
-    totalScore: 130,
-  },
-  {
-    title: 'เลขยกกำลังเบื้องต้น',
-    tags: ['เลขยกกำลัง'],
-    difficulty: 3,
-    level: 1,
-    score: -1,
-    totalScore: 150,
-  },
-  {
-    title: 'อัตราส่วนและสัดส่วน',
-    tags: ['อัตราส่วน'],
-    difficulty: 3,
-    level: 1,
-    score: 5,
-    totalScore: 150,
-  },
-  {
-    title: 'สมการเชิงเส้นตัวแปรเดียว',
-    tags: ['สมการ'],
-    difficulty: 3,
-    level: 1,
-    score: -1,
-    totalScore: 150,
-  },
-  {
-    title: 'กราฟและความสัมพันธ์เชิงเส้น',
-    tags: ['กราฟ'],
-    difficulty: 2,
-    level: 1,
-    score: -1,
-    totalScore: 160,
-  },
-  {
-    title: 'ความรู้เบื้องต้นเกี่ยวกับจำนวนจริง',
-    tags: ['จำนวนจริง'],
-    difficulty: 2,
-    level: 2,
-    score: -1,
-    totalScore: 140,
-  },
-  {
-    title: 'สมบัติเลขยกกำลัง',
-    tags: ['เลขยกกำลัง'],
-    difficulty: 3,
-    level: 2,
-    score: 20,
-    totalScore: 150,
-  },
-  {
-    title: 'พหุนามเบื้องต้น',
-    tags: ['พหุนาม'],
-    difficulty: 3,
-    level: 2,
-    score: -1,
-    totalScore: 150,
-  },
-  {
-    title: 'การแยกตัวประกอบพหุนาม',
-    tags: ['พหุนาม', 'แยกตัวประกอบ'],
-    difficulty: 3,
-    level: 2,
-    score: -1,
-    totalScore: 150,
-  },
-  {
-    title: 'สมการกำลังสอง',
-    tags: ['สมการกำลังสอง'],
-    difficulty: 2,
-    level: 3,
-    score: -1,
-    totalScore: 160,
-  },
-  {
-    title: 'กราฟของฟังก์ชันกำลังสอง',
-    tags: ['กราฟ', 'ฟังก์ชัน'],
-    difficulty: 1,
-    level: 3,
-    score: -1,
-    totalScore: 170,
-  },
-  {
-    title: 'ระบบสมการเชิงเส้นสองตัวแปร',
-    tags: ['สมการ', 'ระบบสมการ'],
-    difficulty: 1,
-    level: 3,
-    score: -1,
-    totalScore: 170,
-  },
-  {
-    title: 'ฟังก์ชันเอกซ์โพเนนเชียล',
-    tags: ['ฟังก์ชัน', 'เอกซ์โพเนนเชียล'],
-    difficulty: 3,
-    level: 4,
-    score: -1,
-    totalScore: 180,
-  },
-  {
-    title: 'เมทริกซ์พื้นฐาน',
-    tags: ['เมทริกซ์'],
-    difficulty: 1,
-    level: 5,
-    score: 190,
-    totalScore: 190,
-  },
-  {
-    title: 'ความน่าจะเป็น',
-    tags: ['ความน่าจะเป็น'],
-    difficulty: 3,
-    level: 3,
-    score: -1,
-    totalScore: 180,
-  },
-];
+import { GET_ALL_PRACTICE_QUESTION_URL } from '../config/apiConfig'
 
 function TT({ children }) {
   return (
@@ -174,7 +14,7 @@ function TT({ children }) {
 
 function TTI({ children} ) {
   return (
-    <div className="text-slate-700 text-md">
+    <div className="text-slate-700 text-md flex items-center justify-center">
       { children }
     </div>
   )
@@ -196,7 +36,7 @@ function TableHead() {
 }
 
 
-function TableItem({ id, title, tags, difficulty, level, score, totalScore }) {
+function TableItem({ id, title, tags, difficulty, level, score, totalScore, owner }) {
   const getDifficultyClass = (difficulty) => {
     switch (difficulty) {
       case 1: return 'bg-green-200 text-green-800';
@@ -214,11 +54,18 @@ function TableItem({ id, title, tags, difficulty, level, score, totalScore }) {
   return (
     <button className="grid grid-cols-[1fr_4fr_2fr_1fr_2fr] sm:grid-cols-[1fr_4fr_3fr_2fr_1fr_2fr] px-4 py-4 bg-gray-50 border border-gray-300 rounded-md hover:cursor-pointer hover:shadow-sm transition-all duration-200">
       <TTI>{id}</TTI>
-      <TTI>{title}</TTI>
+      <TTI>
+        <div className='flex justify-center items-center flex-col'>
+          <p>{title}</p>
+          <p className='text-[0.75rem] text-slate-400'>by {owner}</p>
+        </div>
+      </TTI>
       <div className="hidden sm:flex flex-wrap gap-1 justify-center">
-        {tags.map((tag, i) => (
-          <span className="bg-gray-200 text-sm px-1 flex items-center rounded-sm text-slate-600 h-6">{ tag }</span> 
-        ))} 
+        <TTI>
+          {tags.map((tag, i) => (
+            <span key={i} className="bg-gray-200 text-sm px-1 flex items-center rounded-sm text-slate-600 h-6">{ tag }</span>
+          ))}
+        </TTI>
       </div>
       <TTI>
         <span className={`px-1 py-0.5 rounded text-sm ${getDifficultyClass(difficulty)}`}>
@@ -226,23 +73,61 @@ function TableItem({ id, title, tags, difficulty, level, score, totalScore }) {
         </span>
       </TTI>
       <TTI><span className="border-1 border-gray-400 text-sm p-1 text-gray-400">ม.{level}</span></TTI>
-      <div>
+      <TTI>
         <span className={`text-sm ${ score === -1 ? 'text-slate-400' : 'text-green-500' }`}>
           {score === -1 ? 'ยังไม่ทำ' : `${score} / ${totalScore}`}
         </span>
-      </div>
+      </TTI>
     </button>
   );
 }
 
 export default function Practice() {
+  const navigate = useNavigate()
+  const [problems, setProblems] = useState([]);
+  const auth = useAuth()
+
+  const difficultyTextToNumber = (x) => {
+    if (x == 'easy') return 1;
+    if (x == 'medium') return 2;
+    if (x == 'hard') return 3;
+  }
+
+  useEffect(() => {
+    fetch(GET_ALL_PRACTICE_QUESTION_URL)
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.success == true) {
+          setProblems(data.practiceQuestion)
+        }
+      })
+  }, [])
+
+  console.log(problems)
+
   return (
     <Main>
       <h1 className="text-primary-500 text-4xl text-center mt-8">โจทย์ฝึกฝน</h1>
       <TableHead />
+      {
+        auth.isLogin &&
+        <button onClick={() => navigate('/create-practice-question')} className="text-slate-500 bg-gray-100 hover:bg-primary-400 p-2 w-full mb-2 rounded-md hover:cursor-pointer hover:shadow-sm transition-all duration-200">
+          เพิ่มโจทย์ฝึกฝน
+        </button>
+      }
       <div className="flex flex-col gap-2">
-        {problems.map((problem, index) => (
-          <TableItem key={index} id={index + 1} {...problem} />
+        {problems && problems.map((problem, index) => (
+          <TableItem
+            key={problem._id}
+            id={index + 1}
+            title={problem.title}
+            owner={problem.createdBy.username}
+            tags={problem.tags}
+            difficulty={difficultyTextToNumber(problem.difficulty)}
+            level={problem.grade}
+            score={-1}
+            totalScore={problem.questions.length}
+          />
         ))}
       </div>
     </Main>

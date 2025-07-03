@@ -66,7 +66,7 @@ const initialEdges = [
   return edge
 });
 
-console.log(initialEdges)
+// console.log(initialEdges)
 
 export default function MathMap() {
   const navigate = useNavigate()
@@ -86,19 +86,19 @@ export default function MathMap() {
     }
     return x
   })
-  console.log(JSON.stringify(myNodes.map((node) => {
-    const id = node.id
-    let pos;
-
-    positions.forEach((n) => {
-      if (n.id == id) {
-        pos = n.position
-      }
-    })
-
-    node.position = pos
-    return node
-  })))
+  // console.log(JSON.stringify(myNodes.map((node) => {
+  //   const id = node.id
+  //   let pos;
+  //
+  //   positions.forEach((n) => {
+  //     if (n.id == id) {
+  //       pos = n.position
+  //     }
+  //   })
+  //
+  //   node.position = pos
+  //   return node
+  // })))
 
   return (
     <div style={{ width: '100vw', height: '100vh', backgroundColor: '#fffffe' }}>

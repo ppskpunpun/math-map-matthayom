@@ -11,7 +11,7 @@ import { AiOutlineProfile } from "react-icons/ai";
 
 function NavLinkItem({ children, to='/' }) {
   return (
-    <NavLink to={to} end 
+    <NavLink to={to} end
       className={({ isActive }) => 'transition-all duration-300 hover:text-secondary-500 flex gap-1 ' + (isActive && 'border-b-2 border-secondary-500 text-secondary-500')}
     >
       { children }
@@ -29,9 +29,9 @@ function DropDownItem({ children, onClick }) {
 
 function UserDropDown({ username }) {
   const [ isDrop, setIsDrop ] = useState(false);
-  const navigate = useNavigate(); 
+  const navigate = useNavigate();
   const auth = useAuth();
-  
+
   return (
     <div>
       <button onClick={ () => setIsDrop((val) => !val) } className='flex hover:cursor-pointer items-stretch gap-2 text-slate-700'>
@@ -41,22 +41,22 @@ function UserDropDown({ username }) {
           isDrop
           ? <FaChevronUp className='translate-y-0.5' />
           : <FaChevronDown className='translate-y-0.5' />
-        } 
+        }
       </button>
       { isDrop &&
         <ul className='fixed flex flex-col top-[50px] right-2 w-[150px] border-1 border-gray-200 gap-[1px] bg-gray-200 rounded-sm overflow-hidden'>
           <DropDownItem onClick={() => navigate('/profile') }><AiOutlineProfile />Profile</DropDownItem>
           <DropDownItem onClick={auth.logout}><MdOutlineExitToApp />Log out</DropDownItem>
         </ul>
-      } 
+      }
     </div>
-    
+
   )
 }
 
 export default function TopNavBar() {
   const navigate = useNavigate();
-  const auth = useAuth(); 
+  const auth = useAuth();
 
   return (
     <nav className="grid grid-cols-3 md:flex items-center h-[56px] bg-white px-6 py-2 sticky top-0 shadow-md font-serif z-10">
@@ -73,12 +73,12 @@ export default function TopNavBar() {
         <NavLinkItem to='/practice'><FaDumbbell size='20' />Practice</NavLinkItem>
         <NavLinkItem to='/leaderboard'><FaTrophy size='20' />Leaderboard</NavLinkItem>
         <NavLinkItem to='/about'><FaCircleQuestion size='20' />About</NavLinkItem>
-      </div>  
+      </div>
       <div className="flex justify-end">
         {
           auth.isLogin
-          ? <UserDropDown username={auth.userData?.username} /> 
-          : <Button variant='outline_primary' onClick={ () => { navigate('/login') } }>Login &rarr;</Button> 
+          ? <UserDropDown username={auth.userData?.username} />
+          : <Button variant='outline_primary' onClick={ () => { navigate('/login') } }>Login &rarr;</Button>
         }
       </div>
     </nav>

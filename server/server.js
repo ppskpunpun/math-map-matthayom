@@ -26,7 +26,7 @@ app.use(express.json())
 app.use(cookieParser())
 
 app.use('/auth', authRoute)
-app.use('/practiceQuestionRoute', practiceQuestionRoute)
+app.use('/practiceQuestion', practiceQuestionRoute)
 
 app.listen(PORT, () => {
     console.log(`Sever is now listening on port ${PORT}`)

@@ -43,7 +43,7 @@ export default function Home() {
       <Hero />
       <div className='bg-secondary-500 py-8'>
         <Main>
-          <div className='grid grid-cols-1 lg:grid-cols-3 gap-8'>
+          <div className='grid grid-cols-1 lg:grid-cols-3 gap-8 px-2'>
             <Card>
               <H2 className='text-slate-600 text-center'>บทเรียน</H2>
               <FaBookOpen className='text-slate-600' size='120' />

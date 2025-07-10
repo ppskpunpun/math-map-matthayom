@@ -18,6 +18,15 @@ router.post('/create', async (req, res) => {
             questions
         } = req.body
 
+        const existingPracticeQuestion = await PracticeQuestion.findOne({
+            title: title,
+            createdBy: user._id
+        })
+
+        if (existingPracticeQuestion) {
+            return res.status(400).json({ message: 'Duplicate title from this user', success: false })
+        }
+
         let practiceQuestion = await PracticeQuestion.create({
             title,
             difficulty,

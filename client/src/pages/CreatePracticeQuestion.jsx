@@ -93,6 +93,8 @@ export default function CreatePracticeQuestion() {
       .then((data) => {
         if (data.success) {
           // verify if the question has been created
+        } else {
+          // failed to create the practice question
         }
       })
       .catch((err) => {

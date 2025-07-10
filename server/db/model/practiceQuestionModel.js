@@ -50,8 +50,6 @@ const practiceQuestionSchema = new Schema({
         correctAnserIndex: Number,
         // for written
         correctAnswer: String,
-
-        required: true,
     }],
 })
 

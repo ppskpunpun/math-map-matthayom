@@ -23,6 +23,8 @@ router.post('/create', async (req, res) => {
             createdBy: user._id
         })
 
+        console.log(req.body)
+
         if (existingPracticeQuestion) {
             return res.status(400).json({ message: 'Duplicate title from this user', success: false })
         }
@@ -39,7 +41,7 @@ router.post('/create', async (req, res) => {
         res.status(201).json({ message: "Practice Question Created Successfully", success: true, practiceQuestion })
 
     } catch(err) {
-        res.status(500).json({ message: "Internal server error"})
+        res.status(500).json({ message: "Internal server error", success: false })
     }
 })
 

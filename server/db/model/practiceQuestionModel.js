@@ -27,6 +27,7 @@ const practiceQuestionSchema = new Schema({
     tags: {
         type: [String],
         default: [],
+        required: true,
     },
     source: {
         type: String

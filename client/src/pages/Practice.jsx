@@ -62,9 +62,11 @@ function TableItem({ id, title, tags, difficulty, level, score, totalScore, owne
       </TTI>
       <div className="hidden sm:flex flex-wrap gap-1 justify-center">
         <TTI>
-          {tags.map((tag, i) => (
-            <span key={i} className="bg-gray-200 text-sm px-1 flex items-center rounded-sm text-slate-600 h-6">{ tag }</span>
-          ))}
+          <div className='flex gap-2 flex-wrap'>
+            {tags.map((tag, i) => (
+              <span key={i} className="bg-gray-200 text-sm px-1 flex items-center rounded-sm text-slate-600 h-6">{ tag }</span>
+            ))}
+          </div>
         </TTI>
       </div>
       <TTI>
@@ -102,8 +104,6 @@ export default function Practice() {
         }
       })
   }, [])
-
-  console.log(problems)
 
   return (
     <Main>

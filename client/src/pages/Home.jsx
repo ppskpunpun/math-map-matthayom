@@ -17,7 +17,7 @@ function Hero() {
       }}
     >
       <h2 className="md:text-5xl text-2xl text-gray-50">ยินดีต้อนรับเข้าสู่เว็บไซต์</h2>
-      <h1 className="text-3xl md:text-6xl bg-gray-100 px-6 py-3 md:px-8 md:py-4 flex gap-4 font-bold rounded-xl shadow-md">
+      <h1 className="text-2xl sm:text-3xl md:text-6xl bg-gray-100 px-3 sm:px-6 py-3 md:px-8 md:py-4 flex gap-4 font-bold rounded-xl shadow-md">
         <span className="text-primary-500">Math</span>
         <span className="text-accent-1">Map</span>
         <span className="text-secondary-500">Matthayom</span>

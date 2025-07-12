@@ -15,6 +15,24 @@ import { FaRegCheckCircle } from "react-icons/fa";
 
 import { toThai } from "../utils";
 
+const allTopics = [
+  'ระบบจำนวน',
+  'เซต',
+  'ตรรกศาสตร์',
+  'จำนวนจริง',
+  'จำนวนเชิงซ้อน',
+  'เมทริกซ์',
+  'ความสัมพันธ์และฟังก์ชัน',
+  'ฟังก์ชันเอกซ์โพเนนเชียล และฟังก์ชั่นลอการิทึม',
+  'ฟังก์ชันตรีโกณมิติ',
+  'ลำดับและอนุกรม',
+  'เรขาคณิตวิเคราะห์',
+  'ความหมายของสถิติศาสตร์และข้อมูล',
+  'การวิเคราะห์ข้อมูลเชิงคุณภาพ',
+  'ตัวแปรสุ่มและการแจกแจงความน่าจะเป็น',
+  'หลักการนับเบื้องต้น'
+];
+
 export default function CreatePracticeQuestion() {
   const auth = useAuth()
   const navigate = useNavigate()
@@ -257,7 +275,7 @@ export default function CreatePracticeQuestion() {
           <InputField onChange={onLinkToSourceChange} className='w-full bg-slate-100' />
           <H3>หมวดหมู่</H3>
           <div className='flex gap-2'>
-            <InputField value={tagInputField} onChange={(e) => setTagInputField(e.target.value)} className='bg-slate-100'></InputField>
+            <Select onChange={ (e) => setTagInputField(e.target.value) } options={allTopics} defaultIdx={0} />
             <button type='button' onClick={handleAddTag} className='bg-secondary-500 aspect-square w-10 text-xl text-slate-50 hover:cursor-pointer active:bg-seondary-400 transition-all duration-200'>+</button>
           </div>
           <div className='flex gap-4 mt-4 flex-wrap'>

@@ -36,7 +36,7 @@ function TableHead() {
 }
 
 
-function TableItem({ id, title, tags, difficulty, level, score, totalScore, owner }) {
+function TableItem({ onClick, id, title, tags, difficulty, level, score, totalScore, owner }) {
   const getDifficultyClass = (difficulty) => {
     switch (difficulty) {
       case 1: return 'bg-green-200 text-green-800';
@@ -52,7 +52,7 @@ function TableItem({ id, title, tags, difficulty, level, score, totalScore, owne
   else if (difficulty == 3) diffText = 'Hard';
 
   return (
-    <button className="grid grid-cols-[1fr_4fr_2fr_1fr_2fr] sm:grid-cols-[1fr_4fr_3fr_2fr_1fr_2fr] px-4 py-4 bg-gray-50 border border-gray-300 rounded-md hover:cursor-pointer hover:shadow-sm transition-all duration-200">
+    <button onClick={onClick} className="grid grid-cols-[1fr_4fr_2fr_1fr_2fr] sm:grid-cols-[1fr_4fr_3fr_2fr_1fr_2fr] px-4 py-4 bg-gray-50 border border-gray-300 rounded-md hover:cursor-pointer hover:shadow-sm transition-all duration-200">
       <TTI>{id}</TTI>
       <TTI>
         <div className='flex justify-center items-center flex-col'>
@@ -127,6 +127,7 @@ export default function Practice() {
             level={problem.grade}
             score={-1}
             totalScore={problem.questions.length}
+            onClick={() => navigate(`/practice/${problem.createdBy.username}/${problem.title}`) }
           />
         ))}
       </div>

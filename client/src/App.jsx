@@ -10,6 +10,7 @@ import NotFound from './pages/NotFound';
 import About from './pages/About';
 import Practice from './pages/Practice'
 import CreatePracticeQuestion from './pages/CreatePracticeQuestion';
+import DoPracticeQuestion from './pages/DoPracticeQuestion';
 import Leaderboard from './pages/Leaderboard';
 
 import IntegerNumber from './pages/contents/number-system/IntegerNumber';
@@ -26,6 +27,7 @@ export default function App() {
             <Route path='contents/number-system/integer-number' element={ <IntegerNumber /> } />
             <Route path='contents/number-system/sets' element={ <Sets /> } />
             <Route path='practice' element={ <Practice /> } />
+            <Route path='practice/:username/:title' element={ <DoPracticeQuestion /> } />
             <Route path='create-practice-question' element={ <CreatePracticeQuestion /> } />
             <Route path='leaderboard' element={ <Leaderboard /> } />
             <Route path='about' element={ <About /> } />

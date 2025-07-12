@@ -1,4 +1,5 @@
 import express from 'express'
+import User from '../db/model/userModel.js';
 import PracticeQuestion from '../db/model/practiceQuestionModel.js';
 import { verifyToken, getToken } from '../util/secretToken.js';
 
@@ -15,7 +16,9 @@ router.post('/create', async (req, res) => {
             difficulty,
             grade,
             tags,
-            questions
+            questions,
+            source,
+            linkToSource,
         } = req.body
 
         const existingPracticeQuestion = await PracticeQuestion.findOne({
@@ -42,6 +45,31 @@ router.post('/create', async (req, res) => {
 
     } catch(err) {
         res.status(500).json({ message: "Internal server error", success: false })
+    }
+})
+
+router.get('/:username/:title', async (req, res) => {
+    const { username, title } = req.params
+
+    try {
+        const user = await User.findOne({ username: username })
+
+        const question = await PracticeQuestion.findOne({
+            createdBy: user._id,
+            title: title,
+        }).populate('createdBy', 'username')
+
+        if (!question) {
+            return res.status(404).json({ message: 'Practice question not found', success: false });
+        }
+
+        res.status(200).json({
+            success: true,
+            question
+        })
+    } catch(err) {
+        console.log(err)
+        res.status(500).json({ message: "Internal server error"})
     }
 })
 

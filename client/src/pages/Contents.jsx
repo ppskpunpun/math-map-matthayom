@@ -55,7 +55,7 @@ export default function Contents() {
           <Chapter color='blue' to='/x' level='1'>อัตราส่วน สัดส่วน และร้อยละ</Chapter>
           <Chapter color='blue' to='/x' level='2'>ความรู้เบื้องต้นเกี่ยวกับจำนวนจริง</Chapter>
           <Chapter color='blue' to='/x' level='2'>สมบัติเลขยกกำลัง</Chapter>
-          <Chapter color='blue' to='/x' level='4'>เซต</Chapter>
+          <Chapter color='blue' to='/contents/number-system/sets' level='4'>เซต</Chapter>
           <Chapter color='blue' to='/x' level='4'>ตรรกศาสตร์</Chapter>
           <Chapter color='blue' to='/x' level='4'>จำนวนจริง</Chapter>
           <Chapter color='blue' to='/x' level='5'>จำนวนเชิงซ้อน</Chapter>

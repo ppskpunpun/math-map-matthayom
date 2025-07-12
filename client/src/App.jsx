@@ -13,6 +13,7 @@ import CreatePracticeQuestion from './pages/CreatePracticeQuestion';
 import Leaderboard from './pages/Leaderboard';
 
 import IntegerNumber from './pages/contents/number-system/IntegerNumber';
+import Sets from './pages/contents/number-system/Set'
 
 export default function App() {
   return (
@@ -23,6 +24,7 @@ export default function App() {
             <Route index element={ <Home /> } />
             <Route path='contents' element={ <Contents /> } />
             <Route path='contents/number-system/integer-number' element={ <IntegerNumber /> } />
+            <Route path='contents/number-system/sets' element={ <Sets /> } />
             <Route path='practice' element={ <Practice /> } />
             <Route path='create-practice-question' element={ <CreatePracticeQuestion /> } />
             <Route path='leaderboard' element={ <Leaderboard /> } />

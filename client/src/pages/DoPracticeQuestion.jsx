@@ -8,18 +8,22 @@ import H2 from '../components/H2'
 import H3 from '../components/H3'
 import Button from '../components/Button'
 import InputField from '../components/InputField'
+import ProgressPieChart from '../components/ProgressPieChart'
 
-function TableLeft({ children }) {
+import { FaRegCircleCheck } from "react-icons/fa6";
+import { RxCrossCircled } from "react-icons/rx";
+
+function TableLeft({ children, className }) {
   return (
-    <div className='bg-gray-300 h-10 flex items-center px-4'>
+    <div className={`bg-gray-300 h-10 flex items-center px-4 ${className}`}>
       {children}
     </div>
   )
 }
 
-function TableRight({ children }) {
+function TableRight({ children, className }) {
   return (
-    <div className='bg-gray-200 h-10 flex items-center px-4'>
+    <div className={`bg-gray-200 h-10 flex items-center px-4 ${className}`}>
       {children}
     </div>
   )
@@ -48,11 +52,17 @@ export default function DoPracticeQuestion() {
     }
   }
 
-  const formatTime = (totalSeconds) => {
+  const formatTime = (totalSeconds, type) => {
     const minutes = Math.floor(totalSeconds / 60)
     const seconds = totalSeconds % 60
-    return `${minutes}:${String(seconds).padStart(2, '0')}`
+
+    if (type == 0) {
+      return `${minutes}:${String(seconds).padStart(2, '0')}`
+    } else {
+      return `${(minutes > 0) ? minutes + ' นาที' : ''} ${seconds} วินาที`
+    }
   }
+
 
   function onAnswerChange(e, i, type) {
     setAnswers(x => {
@@ -68,15 +78,19 @@ export default function DoPracticeQuestion() {
     })
   }
 
+  function checkAnswer(i) {
+    if (practiceQuestion.questions[i].type == 'written') {
+      return (answers[i] == practiceQuestion.questions[i].correctAnswer) ? 1 : 0
+    } else {
+      return (answers[i] == practiceQuestion.questions[i].correctAnswerIndex) ? 1 : 0
+    }
+  }
+
   function getScore() {
     let score = 0
 
     for (let i=0; i<answers.length; i++) {
-      if (practiceQuestion.questions[i].type == 'written') {
-        score += (answers[i] == practiceQuestion.questions[i].correctAnswer) ? 1 : 0
-      } else {
-        score += (answers[i] == practiceQuestion.questions[i].correctAnswerIndex) ? 1 : 0
-      }
+      score += checkAnswer(i)
     }
 
     return score
@@ -102,6 +116,7 @@ export default function DoPracticeQuestion() {
       .then((data) => {
         if (data.success == true) {
           setIsStarted(false)
+          setIsFinished(true)
           console.log(getScore())
         } else {
           setErrorMsg('ไม่สามารถส่งคำตอบได้')
@@ -133,7 +148,7 @@ export default function DoPracticeQuestion() {
     <Main>
       {isStarted && (
         <div className="fixed bottom-5 right-4 z-50 bg-white shadow-md px-4 py-2 rounded-lg text-slate-500 border-1 border-gray-200">
-          ⏱️ {formatTime(secondsElapsed)}
+          ⏱️ {formatTime(secondsElapsed, 0)}
         </div>
       )}
 
@@ -158,37 +173,76 @@ export default function DoPracticeQuestion() {
             <TableLeft>แหล่งที่มา</TableLeft>
             <TableRight>{practiceQuestion.source || '-'}</TableRight>
           </div>
-          <div className='flex justify-end'>
-            <Button variant='outline_primary' onClick={() => setIsStarted(true)}>
-              เริ่มทำ
-            </Button>
+          {
+            !isFinished &&
+            <div className='flex justify-end'>
+              <Button variant='outline_primary' onClick={() => setIsStarted(true)}>
+                เริ่มทำ
+              </Button>
+            </div>
+          }
+        </SectionCard>
+      }
+
+      { isFinished &&
+        <SectionCard className='mt-2'>
+          <H2>ผลลัพท์</H2>
+          <div className='flex justify-center'>
+            <ProgressPieChart
+              percentage={ ((getScore() / answers.length) * 100).toFixed(2) }
+              color="#FF478A"
+              size={255}
+            />
+          </div>
+          <div className='mt-8 grid grid-cols-[1fr_3fr] rounded-md overflow-hidden text-slate-600 gap-y-0.5 mb-2'>
+            <TableLeft>คะแนนที่ได้</TableLeft>
+            <TableRight>{ `${getScore()} / ${answers.length}` }</TableRight>
+            <TableLeft>เวลาทีใช้</TableLeft>
+            <TableRight>{ formatTime(secondsElapsed, 1) }</TableRight>
           </div>
         </SectionCard>
       }
 
-      {(isStarted && practiceQuestion.questions) &&
+      {((isStarted || isFinished )&& practiceQuestion.questions) &&
         <form className='flex flex-col pt-2 gap-2' onSubmit={handleSubmit}>
           {
             practiceQuestion.questions.map((q, i) => (
-              <SectionCard key={i} className='flex flex-col gap-2'>
+              <SectionCard key={i} className={`flex flex-col gap-2`}>
                 <p className='text-slate-700'>{i + 1}. { q.questionText }</p>
                 { q.imageLink && <img className='max-h-screen max-w-full' src={q.imageLink} /> }
                 { q.type === 'written'
                   ? (
-                   <InputField onChange={(e) => onAnswerChange(e, i, 'written')} placeholder='กรอกคำตอบที่นี่' />
+                   <InputField disabled={isFinished}  onChange={(e) => onAnswerChange(e, i, 'written')} placeholder='กรอกคำตอบที่นี่' />
                   )
                   : (
                     q.choices.map((val, j) => (
-                      <button key={j} onClick={() => onAnswerChange(j, i, 'multiple_choices')} type='button' className={`${j == answers[i] ? 'bg-primary-400' : 'bg-gray-200' } px-4 py-2 text-slate-700 hover:bg-gray-300 hover:cursor-pointer active:scale-90`}>
+                      <button key={j} onClick={() => onAnswerChange(j, i, 'multiple_choices')} type='button' disabled={isFinished} className={`${j == answers[i] ? 'bg-primary-400' : 'bg-gray-200' } px-4 py-2 text-slate-700 ${ !isFinished ? 'hover:bg-gray-300 hover:cursor-pointer active:scale-90' : '' }`}>
                         {val}
                       </button>
                     ))
                   )
                 }
+                { isFinished &&
+                  <div className={`flex gap-4 items-center ${ checkAnswer(i) ? 'text-emerald-300' : 'text-red-300'}`}>
+                    { checkAnswer(i) ? <FaRegCircleCheck className='text-5xl' /> : <RxCrossCircled className='text-5xl' /> }
+                    <div className='text-lg'>
+                      คำตอบที่ถูกต้องคือ
+                      { " " }
+                      {
+                        practiceQuestion.questions[i].type == 'written'
+                          ? practiceQuestion.questions[i].correctAnswer
+                          : practiceQuestion.questions[i].choices[practiceQuestion.questions[i].correctAnswerIndex]
+                      }
+                    </div>
+                  </div>
+                }
               </SectionCard>
             ))
           }
-          <Button type='submit' variant='outline_primary'>ส่งคำตอบ</Button>
+          {
+            !isFinished &&
+            <Button type='submit' variant='outline_primary'>ส่งคำตอบ</Button>
+          }
           { errorMsg != '' && <div className='text-red-400'>{ errorMsg }</div>}
         </form>
       }

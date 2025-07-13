@@ -223,6 +223,9 @@ export default function CreatePracticeQuestion() {
 
     if (flag) return
 
+    httpPostContent.questions = questions
+    console.log(httpPostContent)
+
     fetch(CREATE_PRACTICE_QUESTION_URL, {
       method: 'POST',
       headers: {

@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { useParams } from "react-router"
-import { PRACTICE_QUESTION_ROOT } from '../config/apiConfig'
+import { PRACTICE_QUESTION_ROOT, SUBMIT_PRACTICE_QUESTION_URL } from '../config/apiConfig'
 
 import Main from '../components/Main'
 import SectionCard from '../components/SectionCard'
@@ -35,6 +35,10 @@ export default function DoPracticeQuestion() {
 
   const [answers, setAnswers] = useState([])
 
+  const [errorMsg, setErrorMsg] = useState('')
+
+  const [isFinished, setIsFinished] = useState(false)
+
   const getDifficultyClass = (difficulty) => {
     switch (difficulty) {
       case 'easy': return 'bg-green-200 text-green-800'
@@ -57,15 +61,56 @@ export default function DoPracticeQuestion() {
       if (type === 'written') {
         newAnswers[i] = e.target.value
       } else {
-        newAnswers[i] = parseInt(e)
+        newAnswers[i] = e.toString() // index as a string
       }
 
       return newAnswers
     })
   }
 
+  function getScore() {
+    let score = 0
+
+    for (let i=0; i<answers.length; i++) {
+      if (practiceQuestion.questions[i].type == 'written') {
+        score += (answers[i] == practiceQuestion.questions[i].correctAnswer) ? 1 : 0
+      } else {
+        score += (answers[i] == practiceQuestion.questions[i].correctAnswerIndex) ? 1 : 0
+      }
+    }
+
+    return score
+  }
+
   function handleSubmit(e) {
     e.preventDefault()
+
+    fetch(SUBMIT_PRACTICE_QUESTION_URL, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        practiceQuestion: practiceQuestion._id,
+        score: getScore(),
+        answers,
+        timer: secondsElapsed,
+      }),
+      credentials: 'include',
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.success == true) {
+          setIsStarted(false)
+          console.log(getScore())
+        } else {
+          setErrorMsg('ไม่สามารถส่งคำตอบได้')
+        }
+      })
+      .catch((err) => {
+        console.log(err)
+        setErorMsg('มีบางอย่างผิดพลาด')
+      });
   }
 
   useEffect(() => {
@@ -127,7 +172,7 @@ export default function DoPracticeQuestion() {
             practiceQuestion.questions.map((q, i) => (
               <SectionCard key={i} className='flex flex-col gap-2'>
                 <p className='text-slate-700'>{i + 1}. { q.questionText }</p>
-                { q.imageLink && <img className='max-h-[50vh] max-w-full' src={q.imageLink} /> }
+                { q.imageLink && <img className='max-h-screen max-w-full' src={q.imageLink} /> }
                 { q.type === 'written'
                   ? (
                    <InputField onChange={(e) => onAnswerChange(e, i, 'written')} placeholder='กรอกคำตอบที่นี่' />
@@ -144,6 +189,7 @@ export default function DoPracticeQuestion() {
             ))
           }
           <Button type='submit' variant='outline_primary'>ส่งคำตอบ</Button>
+          { errorMsg != '' && <div className='text-red-400'>{ errorMsg }</div>}
         </form>
       }
     </Main>

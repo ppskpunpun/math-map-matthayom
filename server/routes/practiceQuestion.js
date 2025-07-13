@@ -1,6 +1,7 @@
 import express from 'express'
 import User from '../db/model/userModel.js';
 import PracticeQuestion from '../db/model/practiceQuestionModel.js';
+import PracticeQuestionSubmit from '../db/model/practiceQuestionSubmitModel.js';
 import { verifyToken, getToken } from '../util/secretToken.js';
 
 const router = express.Router();
@@ -84,6 +85,32 @@ router.get('/all', async (req, res) => {
             practiceQuestion
         })
     } catch(err) {
+        res.status(500).json({ message: "Internal server error"})
+    }
+})
+
+router.post('/submit', async (req, res) => {
+    try {
+        const token = await getToken(req, res);
+        const user = await verifyToken(token);
+
+        const {
+            practiceQuestion,
+            score,
+            answers,
+            timer,
+        } = req.body
+
+        const submit = PracticeQuestionSubmit.create({
+            submitedBy: user._id,
+            practiceQuestion,
+            score,
+            answers,
+        })
+
+        res.status(201).json({ message: "Practice Question Created Successfully", success: true })
+    } catch(err) {
+        console.log(err)
         res.status(500).json({ message: "Internal server error"})
     }
 })

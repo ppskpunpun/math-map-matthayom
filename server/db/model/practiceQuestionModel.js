@@ -48,7 +48,7 @@ const practiceQuestionSchema = new Schema({
         imageLink: String,
         // for multiple_choices
         choices: [String],
-        correctAnserIndex: Number,
+        correctAnswerIndex: Number,
         // for written
         correctAnswer: String,
     }],

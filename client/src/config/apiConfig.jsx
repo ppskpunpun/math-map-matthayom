@@ -6,3 +6,4 @@ export const PROFILE_URL = `${API_BASE_URL}/auth/profile`;
 export const PRACTICE_QUESTION_ROOT = `${API_BASE_URL}/practiceQuestion`;
 export const CREATE_PRACTICE_QUESTION_URL = `${API_BASE_URL}/practiceQuestion/create`;
 export const GET_ALL_PRACTICE_QUESTION_URL = `${API_BASE_URL}/practiceQuestion/all`;
+export const SUBMIT_PRACTICE_QUESTION_URL = `${API_BASE_URL}/practiceQuestion/submit`;

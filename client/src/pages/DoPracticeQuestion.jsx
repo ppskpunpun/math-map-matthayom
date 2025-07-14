@@ -52,6 +52,13 @@ export default function DoPracticeQuestion() {
     }
   }
 
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth', // smooth scrolling
+    });
+  };
+
   const formatTime = (totalSeconds, type) => {
     const minutes = Math.floor(totalSeconds / 60)
     const seconds = totalSeconds % 60
@@ -117,6 +124,7 @@ export default function DoPracticeQuestion() {
         if (data.success == true) {
           setIsStarted(false)
           setIsFinished(true)
+          scrollToTop()
           console.log(getScore())
         } else {
           setErrorMsg('ไม่สามารถส่งคำตอบได้')

@@ -106,6 +106,7 @@ router.post('/submit', async (req, res) => {
             practiceQuestion,
             score,
             answers,
+            timer,
         })
 
         res.status(201).json({ message: "Practice Question Created Successfully", success: true })
@@ -115,5 +116,58 @@ router.post('/submit', async (req, res) => {
     }
 })
 
+router.get('/get-all-submit', async (req, res) => {
+    try {
+        const token = await getToken(req, res);
+        const user = await verifyToken(token);
+
+        const submits = await PracticeQuestionSubmit.find({ submitedBy: user._id })
+
+        res.status(200).json({
+            success: true,
+            submits,
+        })
+    } catch(err) {
+        console.log(err)
+        res.status(500).json({ message: "Internal server error"})
+    }
+})
+
+
+router.get('/get-best-submit', async (req, res) => {
+    try {
+        const token = await getToken(req, res);
+        const user = await verifyToken(token);
+
+        const submits = await PracticeQuestionSubmit.aggregate([
+            {
+                $match: { submitedBy: user._id } // filter only this user's submits
+            },
+            {
+                $sort: { score: -1 } // sort by score descending
+            },
+            {
+                $group: {
+                    _id: "$practiceQuestion", // group by question
+                    bestSubmit: { $first: "$$ROOT" } // keep the top-scoring doc
+                }
+            },
+            {
+                $replaceRoot: { newRoot: "$bestSubmit" } // flatten the result
+            },
+            {
+                $sort: { _id: -1 } // optional: sort by question ID or time
+            }
+        ]);
+
+        res.status(200).json({
+            success: true,
+            submits,
+        })
+    } catch(err) {
+        console.log(err)
+        res.status(500).json({ message: "Internal server error"})
+    }
+})
 
 export default router

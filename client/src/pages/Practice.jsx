@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router'
 import { useAuth } from '../provider/authProvider'
 import Main from "../components/Main"
-import { GET_ALL_PRACTICE_QUESTION_URL } from '../config/apiConfig'
+import { GET_ALL_PRACTICE_QUESTION_URL, GET_BEST_SUBMIT_PRACTICE_QUESTION_URL } from '../config/apiConfig'
 
 function TT({ children }) {
   return (
@@ -76,7 +76,7 @@ function TableItem({ onClick, id, title, tags, difficulty, level, score, totalSc
       </TTI>
       <TTI><span className="border-1 border-gray-400 text-sm p-1 text-gray-400">ม.{level}</span></TTI>
       <TTI>
-        <span className={`text-sm ${ score === -1 ? 'text-slate-400' : 'text-green-500' }`}>
+        <span className={`text-sm ${ score === -1 ? 'text-slate-400' : (score / totalScore >= 0.8 ? 'text-green-400' : 'text-red-400') }`}>
           {score === -1 ? 'ยังไม่ทำ' : `${score} / ${totalScore}`}
         </span>
       </TTI>
@@ -87,6 +87,7 @@ function TableItem({ onClick, id, title, tags, difficulty, level, score, totalSc
 export default function Practice() {
   const navigate = useNavigate()
   const [problems, setProblems] = useState([]);
+  const [submits, setSubmits] = useState([]);
   const auth = useAuth()
 
   const difficultyTextToNumber = (x) => {
@@ -104,6 +105,27 @@ export default function Practice() {
         }
       })
   }, [])
+
+  useEffect(() => {
+    if (auth.isLogin) {
+      fetch(GET_BEST_SUBMIT_PRACTICE_QUESTION_URL, {
+        method: 'GET',
+        credentials: 'include', // ⬅️ This sends cookies along
+      })
+        .then((res) => res.json())
+        .then((data) => setSubmits(data.submits))
+    }
+  }, [auth.isLogin])
+
+  function getScoreOfQuestion(questionID) {
+    const q = submits.find((s) => s.practiceQuestion == questionID)
+
+    if (q) {
+      return q.score
+    } else {
+      return -1
+    }
+  }
 
   return (
     <Main>
@@ -125,7 +147,7 @@ export default function Practice() {
             tags={problem.tags}
             difficulty={difficultyTextToNumber(problem.difficulty)}
             level={problem.grade}
-            score={-1}
+            score={ getScoreOfQuestion(problem._id) }
             totalScore={problem.questions.length}
             onClick={() => navigate(`/practice/${problem.createdBy.username}/${problem.title}`) }
           />

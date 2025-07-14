@@ -1,4 +1,5 @@
-export const API_BASE_URL = 'http://localhost:5050';
+// export const API_BASE_URL = 'http://localhost:5050'; // for testing
+export const API_BASE_URL = 'https://math-map-matthayom-server.onrender.com'; // for production
 export const SIGNUP_URL = `${API_BASE_URL}/auth/signup`;
 export const LOGIN_URL = `${API_BASE_URL}/auth/login`;
 export const VERIFY_URL = `${API_BASE_URL}/auth/verify`;

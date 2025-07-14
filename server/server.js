@@ -18,7 +18,7 @@ const PORT = process.env.PORT || 5050
 const app = express()
 
 app.use(cors({
-    origin: ['http://localhost:5173'],
+    origin: ['http://localhost:5173', 'https://ppskpunpun.github.io'],
     methods: ['GET', 'POST'],
     credentials: true,
 }))

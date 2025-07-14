@@ -16,7 +16,6 @@ import { FaRegCheckCircle } from "react-icons/fa";
 import { toThai } from "../utils";
 
 const allTopics = [
-  'ระบบจำนวน',
   'เซต',
   'ตรรกศาสตร์',
   'จำนวนจริง',

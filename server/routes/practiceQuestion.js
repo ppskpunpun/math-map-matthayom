@@ -170,4 +170,64 @@ router.get('/get-best-submit', async (req, res) => {
     }
 })
 
+router.get('/top-users', async (req, res) => {
+    try {
+        const result = await PracticeQuestionSubmit.aggregate([
+            // 1. Sort to get the highest score at the top for each group
+            { $sort: { score: -1 } },
+
+            // 2. Group by user + question, keeping only best submit per question
+            {
+                $group: {
+                    _id: {
+                        user: "$submitedBy",
+                        question: "$practiceQuestion"
+                    },
+                    bestScore: { $first: "$score" }
+                }
+            },
+
+            // 3. Group by user to sum their best scores
+            {
+                $group: {
+                    _id: "$_id.user",
+                    totalScore: { $sum: "$bestScore" }
+                }
+            },
+
+            // 4. Sort by totalScore descending
+            { $sort: { totalScore: -1 } },
+
+            // 5. Optionally lookup user info
+            {
+                $lookup: {
+                    from: "users", // the MongoDB collection name (usually lowercase plural)
+                    localField: "_id",
+                    foreignField: "_id",
+                    as: "user"
+                }
+            },
+            { $unwind: "$user" },
+
+            // 6. Format output
+            {
+                $project: {
+                    _id: 0,
+                    userId: "$user._id",
+                    username: "$user.username", // change as needed
+                    totalScore: 1
+                }
+            }
+        ]);
+
+        res.status(200).json({
+            success: true,
+            leaderboard: result
+        })
+    } catch(err) {
+        console.log(err)
+        res.status(500).json({ message: "Internal server error"})
+    }
+})
+
 export default router

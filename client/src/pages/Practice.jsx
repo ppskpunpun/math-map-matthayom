@@ -109,8 +109,11 @@ export default function Practice() {
   useEffect(() => {
     if (auth.isLogin) {
       fetch(GET_BEST_SUBMIT_PRACTICE_QUESTION_URL, {
-        method: 'GET',
-        credentials: 'include', // ⬅️ This sends cookies along
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ token: auth.token }),
       })
         .then((res) => res.json())
         .then((data) => setSubmits(data.submits))

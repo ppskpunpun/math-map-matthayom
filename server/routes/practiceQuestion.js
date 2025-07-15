@@ -2,14 +2,14 @@ import express from 'express'
 import User from '../db/model/userModel.js';
 import PracticeQuestion from '../db/model/practiceQuestionModel.js';
 import PracticeQuestionSubmit from '../db/model/practiceQuestionSubmitModel.js';
-import { verifyToken, getToken } from '../util/secretToken.js';
+import { verifyToken } from '../util/secretToken.js';
 
 const router = express.Router();
 
 // create practice question
 router.post('/create', async (req, res) => {
-    const token = await getToken(req, res);
     try {
+        const token = req.body.token;
         const user = await verifyToken(token);
 
         const {
@@ -39,6 +39,8 @@ router.post('/create', async (req, res) => {
             grade,
             tags,
             questions,
+            source,
+            linkToSource,
             createdBy: user._id,
         })
 
@@ -91,7 +93,7 @@ router.get('/all', async (req, res) => {
 
 router.post('/submit', async (req, res) => {
     try {
-        const token = await getToken(req, res);
+        const token = req.body.token;
         const user = await verifyToken(token);
 
         const {
@@ -118,7 +120,7 @@ router.post('/submit', async (req, res) => {
 
 router.get('/get-all-submit', async (req, res) => {
     try {
-        const token = await getToken(req, res);
+        const token = req.body.token;
         const user = await verifyToken(token);
 
         const submits = await PracticeQuestionSubmit.find({ submitedBy: user._id })
@@ -134,9 +136,11 @@ router.get('/get-all-submit', async (req, res) => {
 })
 
 
-router.get('/get-best-submit', async (req, res) => {
+router.post('/get-best-submit', async (req, res) => {
     try {
-        const token = await getToken(req, res);
+        console.log(req.body)
+        const token = req.body.token;
+        console.log(token)
         const user = await verifyToken(token);
 
         const submits = await PracticeQuestionSubmit.aggregate([

@@ -32,8 +32,8 @@ export default function SignUp() {
       .then((res) => res.json())
       .then((data) => {
         if (data.success) {
+          auth.setToken(data.token)
           navigate('/');
-          window.location.reload()
         } else {
           setErrorMsg(data.message);
         }

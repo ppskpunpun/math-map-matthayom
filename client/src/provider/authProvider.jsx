@@ -15,34 +15,27 @@ function AuthProvider({ children }) {
   const [ isLogin, setIsLogin ] = useState(false);
   const [ isLoading, setIsLoading ] = useState(false)
   const [ userData, setUserData ] = useState(null);
+  const [ token, _setToken ] = useState(localStorage.getItem('token'))
+
+  const setToken = (newToken) => {
+    if (newToken == null) {
+      localStorage.removeItem('token')
+    } else {
+      localStorage.setItem('token', newToken)
+      _setToken(newToken)
+    }
+  }
 
   function logout() {
-    if ( !isLogin ) {
-      return
-    }
-
-    setIsLogin(false);
-    setUserData(null);
-
-    fetch(LOGOUT_URL, {
-      method: 'POST',
-      credentials: 'include',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        if (data.success) {
-          console.log('Logout successfully')
-        } else {
-          console.log('Could not Logout')
-        }
-      })
+    setToken(null)
+    setUserData(null)
+    setIsLogin(false)
   }
 
   // check user login
   useEffect(() => {
+    if (!token) return
+
     setIsLoading(true)
     fetch(PROFILE_URL, {
       method: 'POST',
@@ -50,6 +43,7 @@ function AuthProvider({ children }) {
       headers: {
         'Content-Type': 'application/json',
       },
+      body: JSON.stringify({ token }),
     })
       .then((res) => res.json())
       .then((data) => {
@@ -61,10 +55,10 @@ function AuthProvider({ children }) {
         }
       })
       .catch(() => setIsLogin(false))
-    setIsLoading(false)
-  }, []);
+      .finally(() => setIsLoading(false))
+  }, [token]);
 
-  const contextValue =  useMemo(() => ({ isLogin, userData, logout, isLoading }), [userData]);
+  const contextValue =  useMemo(() => ({ isLogin, userData, logout, isLoading, setToken, token }), [userData]);
 
   return (
     <AuthContext.Provider value={contextValue}>{ children }</AuthContext.Provider>

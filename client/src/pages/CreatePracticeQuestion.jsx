@@ -203,7 +203,7 @@ export default function CreatePracticeQuestion() {
     e.preventDefault();
 
     // verify and format the formContent
-    const httpPostContent = { ...formContent }
+    const httpPostContent = { ...formContent, token: auth.token }
     let flag = false
 
     const questions = httpPostContent.questions.map(q => {

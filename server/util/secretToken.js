@@ -9,6 +9,7 @@ async function verifyToken(token) {
         if (user) return user;
         else throw new Error('Invalid token')
     } catch(err) {
+        console.log(err)
         throw new Error('Invalid token');
     }
 }
@@ -21,9 +22,18 @@ function createSecretToken(id) {
 
 // get the token in cookie
 async function getToken(req, res) {
-    const token = req.cookies.token;
-    if (!token) res.status(401).json({ message: 'Token not found' });
-    else return token;
+    try {
+        const token = req.cookies.token;
+        if (!token) {
+            res.status(401).json({ message: 'Token not found' })
+        } else {
+            return token
+        }
+    } catch(err) {
+        console.log('Can not extract the token')
+        console.log(err)
+        res.status(500).json({ message: 'Can not extract the token' })
+    }
 }
 
 export { createSecretToken, verifyToken, getToken }

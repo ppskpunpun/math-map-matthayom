@@ -3,6 +3,7 @@ export const API_BASE_URL = (import.meta.env.DEV)
   : 'https://math-map-matthayom.onrender.com'; // for testing
 export const SIGNUP_URL = `${API_BASE_URL}/auth/signup`;
 export const LOGIN_URL = `${API_BASE_URL}/auth/login`;
+export const LOGOUT_URL = `${API_BASE_URL}/auth/logout`;
 export const VERIFY_URL = `${API_BASE_URL}/auth/verify`;
 export const PROFILE_URL = `${API_BASE_URL}/auth/profile`;
 export const PRACTICE_QUESTION_ROOT = `${API_BASE_URL}/practiceQuestion`;

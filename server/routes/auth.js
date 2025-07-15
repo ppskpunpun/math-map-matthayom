@@ -19,12 +19,16 @@ router.post('/verify', async (req, res) => {
 
 // route for getting user data
 router.post('/profile', async (req, res) => {
-    const token = await getToken(req, res);
     try {
-        const user = await verifyToken(token);
-        res.status(200).json({...user._doc, success: true});
+        const token = await getToken(req, res);
+
+        if (token) {
+            const user = await verifyToken(token);
+            res.status(200).json({...user._doc, success: true});
+        }
     } catch(err) {
-        res.status(401).json({ message: 'Invalid token'});
+        console.log(err)
+        res.status(401).json({ message: 'Invalid token' });
     }
 })
 
@@ -41,12 +45,12 @@ router.post('/signup', async (req, res) => {
         // create the user in database then generate jwt access token from MongoDB's ObjectId
         const user = await User.create({ username, password, createdAt, name, birthday })
         const token = createSecretToken(user._id)
-
+        const isDev = process.env.DEV
         // send token back to user in cookie
         res.cookie('token', token, {
             httpOnly: true,
-            secure: true,
-            sameSite: 'None',
+            secure: isDev ? false : true,
+            sameSite: isDev ? 'Strict' : 'None',
             maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days in ms
         })
 
@@ -73,10 +77,11 @@ router.post('/login', async (req, res) => {
 
         // send token back to user in cookie
         const token = createSecretToken(user._id)
+        const isDev = process.env.DEV
         res.cookie('token', token, {
             httpOnly: true,
-            secure: true,
-            sameSite: 'None',
+            secure: isDev ? false : true,
+            sameSite: isDev ? 'Strict' : 'None',
             maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days in ms
         })
 
@@ -84,6 +89,21 @@ router.post('/login', async (req, res) => {
 
     } catch(err) {
         res.status(500).json({ message: "Internal server error"})
+    }
+})
+
+router.post('/logout', async (req, res) => {
+    try {
+        const isDev = process.env.DEV
+        res.clearCookie('token', {
+            httpOnly: true,
+            secure: isDev ? false : true,
+            sameSite: isDev ? 'Strict' : 'None',
+        });
+        res.status(200).json({ message: "User logged out successfully", success: true })
+    } catch(err) {
+        console.log(err)
+        res.status(500).json({ message: "Internal server error", success: false })
     }
 })
 

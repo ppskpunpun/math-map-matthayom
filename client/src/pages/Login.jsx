@@ -18,7 +18,7 @@ export default function Login() {
 
   function handleLogin(e) {
     e.preventDefault();
-     
+
     fetch(LOGIN_URL, {
       method: 'POST',
       headers: {
@@ -30,8 +30,8 @@ export default function Login() {
       .then((res) => res.json())
       .then((data) => {
         if (data.success) {
-          auth.setToken(Cookies.get('token'));
           navigate('/');
+          window.location.reload()
         } else {
           setErrorMsg(data.message);
         }
@@ -44,7 +44,7 @@ export default function Login() {
   return (
     <div className='grid place-items-center h-screen bg-primary-500'>
       <div className='flex flex-col bg-gray-50 p-10 shadow-2xl rounded-xl gap-5 w-[40%] max-w-[425px] min-w-[300px] items-center'>
-        <Link to='/'> 
+        <Link to='/'>
           <img className='w-30' src={MMM} />
         </Link>
         <h1 className='text-center text-3xl text-slate-700'>เข้าสู่ระบบ</h1>
@@ -55,7 +55,7 @@ export default function Login() {
           <Button className='w-full' variant='regular_primary' type='submit'>Login</Button>
         </form>
         <Link className='text-sm text-center underline text-slate-500 hover:text-secondary-500 trasnition-all duration-75' to='/signup'>สร้างบัญชีใหม่</Link>
-      </div>     
-    </div> 
+      </div>
+    </div>
   )
 }

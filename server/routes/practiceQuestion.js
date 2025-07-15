@@ -138,9 +138,7 @@ router.get('/get-all-submit', async (req, res) => {
 
 router.post('/get-best-submit', async (req, res) => {
     try {
-        console.log(req.body)
         const token = req.body.token;
-        console.log(token)
         const user = await verifyToken(token);
 
         const submits = await PracticeQuestionSubmit.aggregate([

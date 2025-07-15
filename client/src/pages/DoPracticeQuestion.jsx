@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { useParams } from "react-router"
 import { PRACTICE_QUESTION_ROOT, SUBMIT_PRACTICE_QUESTION_URL } from '../config/apiConfig'
+import { useAuth } from '../provider/authProvider'
 
 import Main from '../components/Main'
 import SectionCard from '../components/SectionCard'
@@ -42,6 +43,8 @@ export default function DoPracticeQuestion() {
   const [errorMsg, setErrorMsg] = useState('')
 
   const [isFinished, setIsFinished] = useState(false)
+
+  const auth = useAuth()
 
   const getDifficultyClass = (difficulty) => {
     switch (difficulty) {
@@ -116,6 +119,7 @@ export default function DoPracticeQuestion() {
         score: getScore(),
         answers,
         timer: secondsElapsed,
+        token: auth.token
       }),
       credentials: 'include',
     })
@@ -163,7 +167,7 @@ export default function DoPracticeQuestion() {
       {practiceQuestion &&
         <SectionCard>
           <H2>{practiceQuestion.title}</H2>
-          <div className='grid grid-cols-[1fr_3fr] rounded-md overflow-hidden text-slate-600 gap-y-0.5 mb-2'>
+          <div className='grid grid-cols-[minmax(125px,1fr)_3fr] rounded-md overflow-hidden text-slate-600 gap-y-0.5 mb-2'>
             <TableLeft>จัดทำโดย</TableLeft>
             <TableRight>{practiceQuestion.createdBy.username}</TableRight>
             <TableLeft>ระดับชั้น</TableLeft>
@@ -182,12 +186,15 @@ export default function DoPracticeQuestion() {
             <TableRight>{practiceQuestion.source || '-'}</TableRight>
           </div>
           {
-            !isFinished &&
+            (!isFinished && auth.isLogin )&&
             <div className='flex justify-end'>
               <Button variant='outline_primary' onClick={() => setIsStarted(true)}>
                 เริ่มทำ
               </Button>
             </div>
+          }
+          { !auth.isLogin &&
+            <div className='text-red-400 text-end'>คุณต้องเข้าสู่ระบบก่อนทำแบบทดสอบ</div>
           }
         </SectionCard>
       }

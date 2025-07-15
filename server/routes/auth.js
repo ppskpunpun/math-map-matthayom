@@ -44,7 +44,10 @@ router.post('/signup', async (req, res) => {
 
         // send token back to user in cookie
         res.cookie('token', token, {
-            httpOnly: false,
+            httpOnly: true,
+            secure: true,
+            sameSite: 'None',
+            maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days in ms
         })
 
         res.status(201).json({ message: "User signed in successfully", success: true, user })
@@ -71,7 +74,10 @@ router.post('/login', async (req, res) => {
         // send token back to user in cookie
         const token = createSecretToken(user._id)
         res.cookie('token', token, {
-            httpOnly: false,
+            httpOnly: true,
+            secure: true,
+            sameSite: 'None',
+            maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days in ms
         })
 
         res.status(200).json({ message: 'User logged in successfully', success: true })

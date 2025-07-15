@@ -18,7 +18,7 @@ const PORT = process.env.PORT || 5050
 const app = express()
 
 app.use(cors({
-    origin: ['http://localhost:5173', 'https://ppskpunpun.github.io'],
+    origin: ['http://localhost:5173', 'https://ppskpunpun.github.io', 'https://math-map-matthayom.vercel.app'],
     methods: ['GET', 'POST'],
     credentials: true,
 }))

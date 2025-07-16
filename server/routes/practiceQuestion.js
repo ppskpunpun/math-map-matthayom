@@ -232,4 +232,41 @@ router.get('/top-users', async (req, res) => {
     }
 })
 
+router.delete('/delete', async (req, res) => {
+    const { questionId, token } = req.body;
+
+    console.log('attempt to delete the question')
+
+    if (!questionId) {
+        return res.status(400).json({ message: "Missing questionId in request body.", success: false });
+    }
+
+    if (!token) {
+        return res.status(401).json({ message: "Token is missing", success: false });
+    }
+
+    try {
+        const user = await verifyToken(token)
+
+        if (user.name != 'admin') {
+            return res.status(401).json({ message: "You don't have permission to do that", success: false });
+        }
+
+        // Delete the practice question
+        const deletedQuestion = await PracticeQuestion.findByIdAndDelete(questionId);
+
+        if (!deletedQuestion) {
+            return res.status(404).json({ error: "Practice question not found." });
+        }
+
+        // Delete all submissions associated with this question
+        await PracticeQuestionSubmit.deleteMany({ practiceQuestion: questionId });
+
+        return res.json({ message: "Question and its submissions deleted successfully.", success: true });
+    } catch (err) {
+        console.error("Error deleting question:", err);
+        return res.status(500).json({ message: "Internal server error.", success: false });
+    }
+})
+
 export default router

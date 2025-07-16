@@ -13,3 +13,4 @@ export const SUBMIT_PRACTICE_QUESTION_URL = `${API_BASE_URL}/practiceQuestion/su
 export const GET_ALL_SUBMIT_PRACTICE_QUESTION_URL = `${API_BASE_URL}/practiceQuestion/get-all-submit`;
 export const GET_BEST_SUBMIT_PRACTICE_QUESTION_URL = `${API_BASE_URL}/practiceQuestion/get-best-submit`;
 export const GET_TOP_USERS = `${API_BASE_URL}/practiceQuestion/top-users`;
+export const DELETE_PRACTICE_QUESTION_URL = `${API_BASE_URL}/practiceQuestion/delete`;

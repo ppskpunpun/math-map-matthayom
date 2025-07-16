@@ -14,6 +14,7 @@ const AuthContext = createContext();
 function AuthProvider({ children }) {
   const [ isLogin, setIsLogin ] = useState(false);
   const [ isLoading, setIsLoading ] = useState(false)
+  const [ isAdmin, setIsAdmin ] = useState(false)
   const [ userData, setUserData ] = useState(null);
   const [ token, _setToken ] = useState(localStorage.getItem('token'))
 
@@ -50,6 +51,9 @@ function AuthProvider({ children }) {
         if (data.success) {
           setIsLogin(true);
           setUserData(data);
+          if (data.name == 'admin') {
+            setIsAdmin(true)
+          }
         } else {
           setIsLogin(false);
         }
@@ -58,7 +62,7 @@ function AuthProvider({ children }) {
       .finally(() => setIsLoading(false))
   }, [token]);
 
-  const contextValue =  useMemo(() => ({ isLogin, userData, logout, isLoading, setToken, token }), [userData]);
+  const contextValue =  useMemo(() => ({ isLogin, userData, logout, isLoading, setToken, token, isAdmin }), [userData]);
 
   return (
     <AuthContext.Provider value={contextValue}>{ children }</AuthContext.Provider>

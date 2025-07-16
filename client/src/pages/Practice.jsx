@@ -2,7 +2,9 @@ import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router'
 import { useAuth } from '../provider/authProvider'
 import Main from "../components/Main"
-import { GET_ALL_PRACTICE_QUESTION_URL, GET_BEST_SUBMIT_PRACTICE_QUESTION_URL } from '../config/apiConfig'
+import Button from "../components/Button"
+import { GET_ALL_PRACTICE_QUESTION_URL, GET_BEST_SUBMIT_PRACTICE_QUESTION_URL, DELETE_PRACTICE_QUESTION_URL } from '../config/apiConfig'
+import { FaRegCircleCheck } from "react-icons/fa6";
 
 function TT({ children }) {
   return (
@@ -52,19 +54,22 @@ function TableItem({ onClick, id, title, tags, difficulty, level, score, totalSc
   else if (difficulty == 3) diffText = 'Hard';
 
   return (
-    <button onClick={onClick} className="grid grid-cols-[1fr_4fr_2fr_1fr_2fr] sm:grid-cols-[1fr_4fr_3fr_2fr_1fr_2fr] px-4 py-4 bg-gray-50 border border-gray-300 rounded-md hover:cursor-pointer hover:shadow-sm transition-all duration-200">
+    <button onClick={onClick} className="grid grid-cols-[1fr_4fr_2fr_1fr_2fr] sm:grid-cols-[1fr_4fr_3fr_2fr_1fr_2fr] px-4 py-4 bg-gray-50 border border-gray-300 rounded-md hover:cursor-pointer hover:shadow-sm transition-all duration-200 w-full">
       <TTI>{id}</TTI>
       <TTI>
         <div className='flex justify-center items-center flex-col'>
           <p>{title}</p>
-          <p className='text-[0.75rem] text-slate-400'>by {owner}</p>
+          { owner == 'admin'
+            ? <p className='text-[0.75rem] text-green-600 flex gap-1 items-center'><FaRegCircleCheck /> Math Map Matthayom</p>
+            : <p className='text-[0.75rem] text-slate-400'>by {owner}</p>
+          }
         </div>
       </TTI>
       <div className="hidden sm:flex flex-wrap gap-1 justify-center">
         <TTI>
           <div className='flex gap-2 flex-wrap'>
             {tags.map((tag, i) => (
-              <span key={i} className="bg-gray-200 text-sm px-1 flex items-center rounded-sm text-slate-600 h-6">{ tag }</span>
+              <span key={i} className="bg-gray-200 text-sm px-1 flex items-center rounded-sm text-slate-600 h-6 text-nowrap">{ tag }</span>
             ))}
           </div>
         </TTI>
@@ -88,6 +93,7 @@ export default function Practice() {
   const navigate = useNavigate()
   const [problems, setProblems] = useState([]);
   const [submits, setSubmits] = useState([]);
+  const [deleteToggle, setDeleteToggle] = useState(false)
   const auth = useAuth()
 
   const difficultyTextToNumber = (x) => {
@@ -130,6 +136,27 @@ export default function Practice() {
     }
   }
 
+  function handleDelete(id) {
+    fetch(DELETE_PRACTICE_QUESTION_URL, {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ token: auth.token, questionId: id }),
+    })
+    .then(res => res.json())
+    .then(data => {
+        console.log(data)
+        if (data.success) {
+          setProblems(p => {
+            return p.filter((val) => val._id != id)
+          })
+        } else {
+          console.log('can not delete the question')
+        }
+    })
+  }
+
   return (
     <Main>
       <h1 className="text-primary-500 text-4xl text-center mt-8">โจทย์ฝึกฝน</h1>
@@ -140,20 +167,23 @@ export default function Practice() {
           เพิ่มโจทย์ฝึกฝน
         </button>
       }
+      { auth.isAdmin && <Button onClick={() => setDeleteToggle(prev => !prev)} variant='outline_secondary' className='mb-3 w-full'>Admin</Button>}
       <div className="flex flex-col gap-2">
         {problems && problems.map((problem, index) => (
-          <TableItem
-            key={problem._id}
-            id={index + 1}
-            title={problem.title}
-            owner={problem.createdBy.username}
-            tags={problem.tags}
-            difficulty={difficultyTextToNumber(problem.difficulty)}
-            level={problem.grade}
-            score={ getScoreOfQuestion(problem._id) }
-            totalScore={problem.questions.length}
-            onClick={() => navigate(`/practice/${problem.createdBy.username}/${problem.title}`) }
-          />
+          <div key={problem._id} className='w-full flex gap-2'>
+            <TableItem
+              id={index + 1}
+              title={problem.title}
+              owner={problem.createdBy.username}
+              tags={problem.tags}
+              difficulty={difficultyTextToNumber(problem.difficulty)}
+              level={problem.grade}
+              score={ getScoreOfQuestion(problem._id) }
+              totalScore={problem.questions.length}
+              onClick={() => navigate(`/practice/${problem.createdBy.username}/${problem.title}`) }
+            />
+            { deleteToggle && <Button onClick={() => handleDelete(problem._id)} variant='outline_primary'>Delete</Button> }
+          </div>
         ))}
       </div>
     </Main>

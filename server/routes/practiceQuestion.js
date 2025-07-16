@@ -248,7 +248,7 @@ router.delete('/delete', async (req, res) => {
     try {
         const user = await verifyToken(token)
 
-        if (user.name != 'admin') {
+        if (user.username != 'admin') {
             return res.status(401).json({ message: "You don't have permission to do that", success: false });
         }
 

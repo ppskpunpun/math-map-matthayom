@@ -51,7 +51,7 @@ function AuthProvider({ children }) {
         if (data.success) {
           setIsLogin(true);
           setUserData(data);
-          if (data.name == 'admin') {
+          if (data.username == 'admin') {
             setIsAdmin(true)
           }
         } else {

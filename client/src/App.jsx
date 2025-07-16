@@ -12,6 +12,7 @@ import Practice from './pages/Practice'
 import CreatePracticeQuestion from './pages/CreatePracticeQuestion';
 import DoPracticeQuestion from './pages/DoPracticeQuestion';
 import Leaderboard from './pages/Leaderboard';
+import Profile from './pages/Profile';
 
 import IntegerNumber from './pages/contents/number-system/IntegerNumber';
 import Sets from './pages/contents/number-system/Set'
@@ -31,6 +32,7 @@ export default function App() {
             <Route path='create-practice-question' element={ <CreatePracticeQuestion /> } />
             <Route path='leaderboard' element={ <Leaderboard /> } />
             <Route path='about' element={ <About /> } />
+            <Route path='profile' element={ <Profile /> } />
             <Route path='*' element={ <NotFound /> }/>
           </Route>
           <Route path='signup' element={ <SignUp /> } />

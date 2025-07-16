@@ -45,7 +45,7 @@ function UserDropDown({ username }) {
       </button>
       { isDrop &&
         <ul className='fixed flex flex-col top-[50px] right-2 w-[150px] border-1 border-gray-200 gap-[1px] bg-gray-200 rounded-sm overflow-hidden'>
-          {/* <DropDownItem onClick={() => navigate('/profile') }><AiOutlineProfile />Profile</DropDownItem> */}
+          <DropDownItem onClick={() => navigate('/profile') }><AiOutlineProfile />Profile</DropDownItem>
           <DropDownItem onClick={auth.logout}><MdOutlineExitToApp />Log out</DropDownItem>
         </ul>
       }

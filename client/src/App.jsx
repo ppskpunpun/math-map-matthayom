@@ -16,6 +16,7 @@ import Profile from './pages/Profile';
 
 import IntegerNumber from './pages/contents/number-system/IntegerNumber';
 import Sets from './pages/contents/number-system/Set'
+import Logic from './pages/contents/number-system/Logic'
 
 export default function App() {
   return (
@@ -27,6 +28,7 @@ export default function App() {
             <Route path='contents' element={ <Contents /> } />
             <Route path='contents/number-system/integer-number' element={ <IntegerNumber /> } />
             <Route path='contents/number-system/sets' element={ <Sets /> } />
+            <Route path='contents/number-system/logic' element={ <Logic /> } />
             <Route path='practice' element={ <Practice /> } />
             <Route path='practice/:username/:title' element={ <DoPracticeQuestion /> } />
             <Route path='create-practice-question' element={ <CreatePracticeQuestion /> } />

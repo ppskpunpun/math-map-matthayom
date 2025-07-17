@@ -35,7 +35,7 @@ export default function RealNumber() {
       <Main>
         <TOC contents={contents} />
         <Sep />
-        <img src='https://www.scimath.org/images/uploads/2_18.jpg' />
+        <img className='w-full' src='https://www.scimath.org/images/uploads/2_18.jpg' />
         <Sep />
 
         <H2>สัจพจน์การเท่ากันของระบบจำนวนจริง <div ref={c1} /></H2>

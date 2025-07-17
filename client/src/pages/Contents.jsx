@@ -77,7 +77,7 @@ export default function Contents() {
           <Chapter color='green' to='/x' level='3'>กราฟของฟังก์ชั่นกำลังสอง</Chapter>
           <Chapter color='green' to='/contents/number-system/realtion-and-function' level='4'>ความสัมพันธ์และฟังก์ชัน</Chapter>
           <Chapter color='green' to='/contents/number-system/exponential-and-logarithm' level='4'>ฟังก์ชันเอกซ์โพเนนเชียล และฟังก์ชั่นลอการิทึม</Chapter>
-          <Chapter color='green' to='/x' level='5'>ฟังก์ชันตรีโกณมิติ</Chapter>
+          <Chapter color='green' to='/contents/number-system/trigonometry' level='5'>ฟังก์ชันตรีโกณมิติ</Chapter>
           <Chapter color='green' to='/x' level='6'>ลำดับและอนุกรม</Chapter>
         </ChapterList>
         <Title>เรขาคณิต</Title>

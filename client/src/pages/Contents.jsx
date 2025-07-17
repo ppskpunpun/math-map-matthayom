@@ -32,6 +32,7 @@ function Chapter({ children, to, color, level }) {
     'pink': 'bg-pink-200 hover:bg-pink-300',
     'yellow': 'bg-yellow-200 hover:bg-yellow-300',
     'orange': 'bg-orange-200 hover:bg-orange-300',
+    'red': 'bg-red-200 hover:bg-red-300',
   }
 
   return (
@@ -113,6 +114,10 @@ export default function Contents() {
         <ChapterList>
           <Chapter color='orange' to='/contents/statistic/counting' level='5'>หลักการนับเบื้องต้น</Chapter>
           <Chapter color='orange' to='/x' level='3-5'>ความน่าจะเป็น</Chapter>
+        </ChapterList>
+        <Title>แคลคูลัส</Title>
+        <ChapterList>
+          <Chapter color='red' to='/contents/calculus/calculus-intro' level='6'>แคลคูลัสเบื้องต้น</Chapter>
         </ChapterList>
       </Main>
     </div>

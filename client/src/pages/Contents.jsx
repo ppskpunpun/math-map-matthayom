@@ -57,7 +57,7 @@ export default function Contents() {
           <Chapter color='blue' to='/x' level='2'>สมบัติเลขยกกำลัง</Chapter>
           <Chapter color='blue' to='/contents/number-system/sets' level='4'>เซต</Chapter>
           <Chapter color='blue' to='/contents/number-system/logic' level='4'>ตรรกศาสตร์</Chapter>
-          <Chapter color='blue' to='/x' level='4'>จำนวนจริง</Chapter>
+          <Chapter color='blue' to='/contents/number-system/real-number' level='4'>จำนวนจริง</Chapter>
           <Chapter color='blue' to='/x' level='5'>จำนวนเชิงซ้อน</Chapter>
         </ChapterList>
         <Title>นิพจน์ สมการ และอสมการ</Title>

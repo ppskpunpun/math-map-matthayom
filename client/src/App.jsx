@@ -22,6 +22,7 @@ import RelationAndFunction from './pages/contents/number-system/RelationAndFunct
 import ExponentialAndLogarithm from './pages/contents/number-system/ExponentialAndLogarithm';
 import Trigonometry from './pages/contents/number-system/Trigonometry';
 import Matrix from './pages/contents/number-system/Matrix';
+import Vector from './pages/contents/number-system/Vector';
 
 export default function App() {
   return (
@@ -39,6 +40,7 @@ export default function App() {
             <Route path='/contents/number-system/exponential-and-logarithm' element={ <ExponentialAndLogarithm /> } />
             <Route path='/contents/number-system/trigonometry' element={ <Trigonometry /> } />
             <Route path='/contents/number-system/matrix' element={ <Matrix /> } />
+            <Route path='/contents/number-system/vector' element={ <Vector /> } />
             <Route path='practice' element={ <Practice /> } />
             <Route path='practice/:username/:title' element={ <DoPracticeQuestion /> } />
             <Route path='create-practice-question' element={ <CreatePracticeQuestion /> } />

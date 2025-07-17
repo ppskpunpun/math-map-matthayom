@@ -18,6 +18,7 @@ import IntegerNumber from './pages/contents/number-system/IntegerNumber';
 import Sets from './pages/contents/number-system/Set'
 import Logic from './pages/contents/number-system/Logic'
 import RealNumber from './pages/contents/number-system/RealNumber';
+import RelationAndFunction from './pages/contents/number-system/RelationAndFunction';
 
 export default function App() {
   return (
@@ -31,6 +32,7 @@ export default function App() {
             <Route path='contents/number-system/sets' element={ <Sets /> } />
             <Route path='contents/number-system/logic' element={ <Logic /> } />
             <Route path='/contents/number-system/real-number' element={ <RealNumber /> } />
+            <Route path='/contents/number-system/realtion-and-function' element={ <RelationAndFunction /> } />
             <Route path='practice' element={ <Practice /> } />
             <Route path='practice/:username/:title' element={ <DoPracticeQuestion /> } />
             <Route path='create-practice-question' element={ <CreatePracticeQuestion /> } />

@@ -50,7 +50,7 @@ export default function Contents() {
       <Main>
         <Title>ระบบจำนวน</Title>
         <ChapterList>
-          <Chapter color='blue' to='/contents/number-system/integer-number' level='1'>จำนวนเต็ม</Chapter>
+          <Chapter color='blue' to='/contents/number-system/integer-number' level='4'>จำนวนเต็ม</Chapter>
           <Chapter color='blue' to='/x' level='1'>ทศนิยมและเศษส่วน</Chapter>
           <Chapter color='blue' to='/x' level='1'>เลขยกกำลัง</Chapter>
           <Chapter color='blue' to='/x' level='1'>อัตราส่วน สัดส่วน และร้อยละ</Chapter>

@@ -21,6 +21,7 @@ import RealNumber from './pages/contents/number-system/RealNumber';
 import RelationAndFunction from './pages/contents/number-system/RelationAndFunction';
 import ExponentialAndLogarithm from './pages/contents/number-system/ExponentialAndLogarithm';
 import Trigonometry from './pages/contents/number-system/Trigonometry';
+import Matrix from './pages/contents/number-system/Matrix';
 
 export default function App() {
   return (
@@ -37,6 +38,7 @@ export default function App() {
             <Route path='/contents/number-system/realtion-and-function' element={ <RelationAndFunction /> } />
             <Route path='/contents/number-system/exponential-and-logarithm' element={ <ExponentialAndLogarithm /> } />
             <Route path='/contents/number-system/trigonometry' element={ <Trigonometry /> } />
+            <Route path='/contents/number-system/matrix' element={ <Matrix /> } />
             <Route path='practice' element={ <Practice /> } />
             <Route path='practice/:username/:title' element={ <DoPracticeQuestion /> } />
             <Route path='create-practice-question' element={ <CreatePracticeQuestion /> } />

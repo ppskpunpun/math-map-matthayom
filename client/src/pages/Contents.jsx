@@ -66,7 +66,7 @@ export default function Contents() {
           <Chapter color='teal' to='/x' level='3'>อสมการเชิงเส้นตัวแปรเดียว</Chapter>
           <Chapter color='teal' to='/x' level='3'>สมการกำลังสองตัวแปรเดียว</Chapter>
           <Chapter color='teal' to='/x' level='3'>ระบบสมการเชิงเส้นสองตัวแปร</Chapter>
-          <Chapter color='teal' to='/x' level='5'>เมทริกซ์</Chapter>
+          <Chapter color='teal' to='/contents/number-system/matrix' level='5'>เมทริกซ์</Chapter>
         </ChapterList>
         <Title>ความสัมพันธ์และฟังก์ชัน</Title>
         <ChapterList>

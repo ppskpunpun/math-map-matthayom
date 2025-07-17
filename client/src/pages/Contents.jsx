@@ -111,7 +111,7 @@ export default function Contents() {
         </ChapterList>
         <Title>หลักการนับ</Title>
         <ChapterList>
-          <Chapter color='orange' to='/x' level='5'>หลักการนับเบื้องต้น</Chapter>
+          <Chapter color='orange' to='/contents/statistic/counting' level='5'>หลักการนับเบื้องต้น</Chapter>
           <Chapter color='orange' to='/x' level='3-5'>ความน่าจะเป็น</Chapter>
         </ChapterList>
       </Main>

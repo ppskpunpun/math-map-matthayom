@@ -24,6 +24,7 @@ import Trigonometry from './pages/contents/number-system/Trigonometry';
 import Matrix from './pages/contents/number-system/Matrix';
 import Vector from './pages/contents/number-system/Vector';
 import ComplexNumber from './pages/contents/number-system/ComplexNumber';
+import CountingAndProbability from './pages/contents/statistic/CountingAndProbability';
 
 export default function App() {
   return (
@@ -43,6 +44,7 @@ export default function App() {
             <Route path='/contents/number-system/matrix' element={ <Matrix /> } />
             <Route path='/contents/number-system/vector' element={ <Vector /> } />
             <Route path='/contents/number-system/complex-number' element={ <ComplexNumber /> } />
+            <Route path='/contents/statistic/counting' element={ <CountingAndProbability /> } />
             <Route path='practice' element={ <Practice /> } />
             <Route path='practice/:username/:title' element={ <DoPracticeQuestion /> } />
             <Route path='create-practice-question' element={ <CreatePracticeQuestion /> } />
